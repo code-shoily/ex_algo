@@ -17,7 +17,7 @@ defmodule ExAlgo.Stack do
   ## Example:
 
     iex> alias ExAlgo.Stack
-    iex> Stack.new() |> Stack.push(10) |> Stack.push(20)
+    iex> %Stack{} |> Stack.push(10) |> Stack.push(20)
     %Stack{container: [20, 10]}
 
   """
@@ -32,11 +32,11 @@ defmodule ExAlgo.Stack do
   ## Example:
 
     iex> alias ExAlgo.Stack
-    iex> stack = Stack.new() |> Stack.push(10) |> Stack.push(20)
+    iex> stack = %Stack{} |> Stack.push(10) |> Stack.push(20)
     iex> {20, %Stack{container: [10]}} = stack |> Stack.pop()
 
     iex> alias ExAlgo.Stack
-    iex> {:error, :underflow} = Stack.new() |> Stack.pop()
+    iex> {:error, :underflow} = %Stack{} |> Stack.pop()
 
   """
   @spec pop(t()) :: {value_type(), t()} | {:error, :underflow}
@@ -54,11 +54,11 @@ defmodule ExAlgo.Stack do
   ## Example:
 
     iex> alias ExAlgo.Stack
-    iex> stack = Stack.new() |> Stack.push(10) |> Stack.push(20)
+    iex> stack = %Stack{} |> Stack.push(10) |> Stack.push(20)
     iex> 20 = stack |> Stack.peek()
 
     iex> alias ExAlgo.Stack
-    iex> Stack.new() |> Stack.peek()
+    iex> %Stack{} |> Stack.peek()
     {:error, :underflow}
 
   """
