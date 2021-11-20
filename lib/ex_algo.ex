@@ -9,10 +9,10 @@ defmodule ExAlgo do
   ## Examples
 
       iex> ExAlgo.hello()
-      :world
+      :algorithms
 
   """
   def hello do
-    :world
+    :algorithms
   end
 end

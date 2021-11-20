@@ -3,6 +3,6 @@ defmodule ExAlgoTest do
   doctest ExAlgo
 
   test "greets the world" do
-    assert ExAlgo.hello() == :world
+    assert ExAlgo.hello() == :algorithms
   end
 end
