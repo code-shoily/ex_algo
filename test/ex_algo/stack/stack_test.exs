@@ -11,7 +11,7 @@ defmodule ExAlgo.StackTest do
      %{
        empty_stack: %Stack{},
        singleton_stack: %Stack{container: [1]},
-       multi_stack: %Stack{container: [1, 2, 3]}
+       stack: %Stack{container: [1, 2, 3]}
      }}
   end
 
@@ -31,8 +31,8 @@ defmodule ExAlgo.StackTest do
                empty_stack |> Stack.push(true) |> Stack.push(false)
     end
 
-    test "Push numbers into non-empty stack", %{multi_stack: multi_stack} do
-      assert %Stack{container: [5, 4, 1, 2, 3]} == multi_stack |> Stack.push(4) |> Stack.push(5)
+    test "Push numbers into non-empty stack", %{stack: stack} do
+      assert %Stack{container: [5, 4, 1, 2, 3]} == stack |> Stack.push(4) |> Stack.push(5)
     end
   end
 
@@ -41,14 +41,14 @@ defmodule ExAlgo.StackTest do
       assert {:error, :underflow} == empty_stack |> Stack.pop()
     end
 
-    test "Pop from a non-empty stack", %{multi_stack: multi_stack} do
-      {item, stack} = multi_stack |> Stack.pop()
+    test "Pop from a non-empty stack", %{stack: stack} do
+      {item, stack} = stack |> Stack.pop()
       assert item == 1
       assert stack.container == [2, 3]
     end
 
-    test "Pop from a non-empty stack multiple times", %{multi_stack: multi_stack} do
-      {item_1, stack} = multi_stack |> Stack.pop()
+    test "Pop from a non-empty stack multiple times", %{stack: stack} do
+      {item_1, stack} = stack |> Stack.pop()
       {item_2, stack} = stack |> Stack.pop()
       {item_3, stack} = stack |> Stack.pop()
       assert {:error, :underflow} == stack |> Stack.pop()
@@ -61,8 +61,8 @@ defmodule ExAlgo.StackTest do
       assert {:error, :underflow} == empty_stack |> Stack.peek()
     end
 
-    test "Peek from a non-empty stack", %{multi_stack: multi_stack} do
-      assert 1 == multi_stack |> Stack.peek()
+    test "Peek from a non-empty stack", %{stack: stack} do
+      assert 1 == stack |> Stack.peek()
     end
   end
 
@@ -75,8 +75,8 @@ defmodule ExAlgo.StackTest do
       assert inspect(singleton_stack) == "#ExAlgo.Stack<[1]>"
     end
 
-    test "Inspect a stack with multiple elements", %{multi_stack: multi_stack} do
-      assert inspect(multi_stack) == "#ExAlgo.Stack<[1, 2, 3]>"
+    test "Inspect a stack with multiple elements", %{stack: stack} do
+      assert inspect(stack) == "#ExAlgo.Stack<[1, 2, 3]>"
     end
   end
 
@@ -94,19 +94,19 @@ defmodule ExAlgo.StackTest do
     test "Length of a stack", stacks do
       assert Enum.count(stacks.empty_stack) == 0
       assert Enum.count(stacks.singleton_stack) == 1
-      assert Enum.count(stacks.multi_stack) == 3
+      assert Enum.count(stacks.stack) == 3
     end
 
-    test "Map over a stack", %{multi_stack: multi_stack} do
-      assert Enum.map(multi_stack, fn elem -> elem**2 end) == [1, 4, 9]
+    test "Map over a stack", %{stack: stack} do
+      assert Enum.map(stack, fn elem -> elem**2 end) == [1, 4, 9]
     end
 
-    test "Filter over a stack", %{multi_stack: multi_stack} do
-      assert Enum.filter(multi_stack, fn elem -> elem > 1 end) == [2, 3]
+    test "Filter over a stack", %{stack: stack} do
+      assert Enum.filter(stack, fn elem -> elem > 1 end) == [2, 3]
     end
 
-    test "Convert a stack to a set", %{multi_stack: multi_stack} do
-      assert Enum.into(multi_stack, %MapSet{}) == MapSet.new([1,2,3])
+    test "Convert a stack to a set", %{stack: stack} do
+      assert Enum.into(stack, %MapSet{}) == MapSet.new([1,2,3])
     end
   end
 end
