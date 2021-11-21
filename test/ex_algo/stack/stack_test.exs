@@ -1,5 +1,6 @@
 defmodule ExAlgo.StackTest do
   use ExUnit.Case
+  use ExUnitProperties
   @moduletag :stack
 
   doctest ExAlgo.Stack
@@ -15,39 +16,48 @@ defmodule ExAlgo.StackTest do
      }}
   end
 
-  describe "Creating stacks" do
-    test "Creating an empty stack" do
+  describe "new/0" do
+    test "create an empty stack" do
       assert Stack.new() == %Stack{container: []}
-    end
-
-    test "Creating stack from enumerable" do
-      assert Stack.from(1..4) == %Stack{container: [4, 3, 2, 1]}
     end
   end
 
-  describe "Push into a stack" do
-    test "Push numbers into an empty stack", %{empty_stack: empty_stack} do
-      assert %Stack{container: [false, true]} ==
-               empty_stack |> Stack.push(true) |> Stack.push(false)
+  describe "from/1" do
+    test "create a stack from an enumerable" do
+      assert Stack.from(1..4) == %Stack{container: [4, 3, 2, 1]}
     end
 
-    test "Push numbers into non-empty stack", %{stack: stack} do
+    property "creating a stack from a list always has the container in reversed order" do
+      check all list <- list_of(term()) do
+        stack = Stack.from(list)
+        assert stack.container == Enum.reverse(list)
+      end
+    end
+  end
+
+  describe "push/2" do
+    test "push numbers into an empty stack", %{empty_stack: stack} do
+      assert %Stack{container: [false, true]} ==
+               stack |> Stack.push(true) |> Stack.push(false)
+    end
+
+    test "push numbers into non-empty stack", %{stack: stack} do
       assert %Stack{container: [5, 4, 1, 2, 3]} == stack |> Stack.push(4) |> Stack.push(5)
     end
   end
 
-  describe "Pop from a stack" do
-    test "Trying to pop from an empty stack results in an error", %{empty_stack: empty_stack} do
-      assert {:error, :underflow} == empty_stack |> Stack.pop()
+  describe "pop/1" do
+    test "trying to pop from an empty stack results in an error", %{empty_stack: stack} do
+      assert {:error, :underflow} == stack |> Stack.pop()
     end
 
-    test "Pop from a non-empty stack", %{stack: stack} do
+    test "pop from a non-empty stack", %{stack: stack} do
       {item, stack} = stack |> Stack.pop()
       assert item == 1
       assert stack.container == [2, 3]
     end
 
-    test "Pop from a non-empty stack multiple times", %{stack: stack} do
+    test "pop from a non-empty stack multiple times", %{stack: stack} do
       {item_1, stack} = stack |> Stack.pop()
       {item_2, stack} = stack |> Stack.pop()
       {item_3, stack} = stack |> Stack.pop()
@@ -56,56 +66,56 @@ defmodule ExAlgo.StackTest do
     end
   end
 
-  describe "Peek from a stack" do
-    test "Trying to peek from an empty stack results in an error", %{empty_stack: empty_stack} do
-      assert {:error, :underflow} == empty_stack |> Stack.peek()
+  describe "peek/1" do
+    test "trying to peek on an empty stack results in an error", %{empty_stack: stack} do
+      assert {:error, :underflow} == stack |> Stack.peek()
     end
 
-    test "Peek from a non-empty stack", %{stack: stack} do
+    test "peek on a non-empty stack", %{stack: stack} do
       assert 1 == stack |> Stack.peek()
     end
   end
 
-  describe "Stacks Inspect" do
-    test "Inspect an empty stack", %{empty_stack: empty_stack} do
-      assert inspect(empty_stack) == "#ExAlgo.Stack<[]>"
+  describe "inspect" do
+    test "inspect an empty stack", %{empty_stack: stack} do
+      assert inspect(stack) == "#ExAlgo.Stack<[]>"
     end
 
-    test "Inspect a stack with single element", %{singleton_stack: singleton_stack} do
-      assert inspect(singleton_stack) == "#ExAlgo.Stack<[1]>"
+    test "inspect a single element stack", %{singleton_stack: stack} do
+      assert inspect(stack) == "#ExAlgo.Stack<[1]>"
     end
 
-    test "Inspect a stack with multiple elements", %{stack: stack} do
+    test "inspect a stack with multiple elements", %{stack: stack} do
       assert inspect(stack) == "#ExAlgo.Stack<[1, 2, 3]>"
     end
   end
 
-  describe "Stacks as collectible" do
-    test "Turn an empty list into an empty stack" do
+  describe "collectable" do
+    test "turn an empty list into an empty stack" do
       assert [] |> Enum.into(%Stack{}) == %Stack{container: []}
     end
 
-    test "List gets into stack in reverse order" do
+    test "list gets into stack in reverse order" do
       assert 1..3 |> Enum.into(%Stack{}) == %Stack{container: [3, 2, 1]}
     end
   end
 
-  describe "Stack as enumerable" do
+  describe "enumerable" do
     test "Length of a stack", stacks do
-      assert stacks.empty_stack |> Enum.count() |> Enum.empty?()
+      assert stacks.empty_stack |> Enum.empty?()
       assert Enum.count(stacks.singleton_stack) == 1
       assert Enum.count(stacks.stack) == 3
     end
 
-    test "Map over a stack", %{stack: stack} do
+    test "map over a stack", %{stack: stack} do
       assert Enum.map(stack, fn elem -> elem ** 2 end) == [1, 4, 9]
     end
 
-    test "Filter over a stack", %{stack: stack} do
+    test "filter over a stack", %{stack: stack} do
       assert Enum.filter(stack, fn elem -> elem > 1 end) == [2, 3]
     end
 
-    test "Convert a stack to a set", %{stack: stack} do
+    test "convert a stack to a set", %{stack: stack} do
       assert Enum.into(stack, %MapSet{}) == MapSet.new([1, 2, 3])
     end
   end
