@@ -11,6 +11,33 @@ defmodule ExAlgo.Stack do
   @type value_type :: any()
   @type t :: %__MODULE__{container: [value_type()]}
 
+  @doc"""
+  Create a new empty stack
+
+  ## Example
+
+    iex> alias ExAlgo.Stack
+    iex> Stack.new()
+    %Stack{container: []}
+
+  """
+  @spec new() :: t()
+  def new, do: %__MODULE__{}
+
+  @doc"""
+  Create a new stack from an enumerable. Note that the stack container has the order inversed as each element of the
+  iterable is pushed into the stack, thereby putting the last element on top.
+
+  ## Example
+
+    iex> alias ExAlgo.Stack
+    iex> Stack.from(1..3)
+    %Stack{container: [3, 2, 1]}
+
+  """
+  @spec from([value_type()]) :: t()
+  def from(enumerable), do: enumerable |> Enum.into(%__MODULE__{})
+
   @doc """
   Puts an element on top of stack.
 

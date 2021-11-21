@@ -15,6 +15,16 @@ defmodule ExAlgo.StackTest do
      }}
   end
 
+  describe "Creating stacks" do
+    test "Creating an empty stack" do
+      assert Stack.new() == %Stack{container: []}
+    end
+
+    test "Creating stack from enumerable" do
+      assert Stack.from(1..4) == %Stack{container: [4, 3, 2, 1]}
+    end
+  end
+
   describe "Push into a stack" do
     test "Push numbers into an empty stack", %{empty_stack: empty_stack} do
       assert %Stack{container: [false, true]} ==
@@ -77,6 +87,26 @@ defmodule ExAlgo.StackTest do
 
     test "List gets into stack in reverse order" do
       assert 1..3 |> Enum.into(%Stack{}) == %Stack{container: [3, 2, 1]}
+    end
+  end
+
+  describe "Stack as enumerable" do
+    test "Length of a stack", stacks do
+      assert Enum.count(stacks.empty_stack) == 0
+      assert Enum.count(stacks.singleton_stack) == 1
+      assert Enum.count(stacks.multi_stack) == 3
+    end
+
+    test "Map over a stack", %{multi_stack: multi_stack} do
+      assert Enum.map(multi_stack, fn elem -> elem**2 end) == [1, 4, 9]
+    end
+
+    test "Filter over a stack", %{multi_stack: multi_stack} do
+      assert Enum.filter(multi_stack, fn elem -> elem > 1 end) == [2, 3]
+    end
+
+    test "Convert a stack to a set", %{multi_stack: multi_stack} do
+      assert Enum.into(multi_stack, %MapSet{}) == MapSet.new([1,2,3])
     end
   end
 end
