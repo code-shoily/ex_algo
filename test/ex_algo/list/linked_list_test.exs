@@ -11,7 +11,7 @@ defmodule ExAlgo.List.LinkedListTest do
     {:ok,
      %{
        empty_list: LinkedList.new(),
-       list: LinkedList.from(1..10)
+       list: LinkedList.from(1..5)
      }}
   end
 
@@ -37,7 +37,7 @@ defmodule ExAlgo.List.LinkedListTest do
 
     test "insert an element at the head of a list", %{list: list} do
       %LinkedList{container: container} = list |> LinkedList.insert(0)
-      assert container == Enum.to_list(0..10)
+      assert container == Enum.to_list(0..5)
     end
   end
 
@@ -85,6 +85,43 @@ defmodule ExAlgo.List.LinkedListTest do
       empty_list: list
     } do
       assert {:error, :empty_list} == LinkedList.at(list, -1)
+    end
+  end
+
+  describe "inspect" do
+    test "inspect an empty list", %{empty_list: list} do
+      assert inspect(list) == "#ExAlgo.LinkedList<[]>"
+    end
+
+    test "inspect an non-empty list", %{list: list} do
+      assert inspect(list) == "#ExAlgo.LinkedList<[1, 2, 3, 4, 5]>"
+    end
+  end
+
+  describe "collectable" do
+    test "convert a List into LinkedList" do
+      list =
+        for i <- 1..10, into: %LinkedList{}, do: i
+      assert list.container == 1..10 |> Enum.to_list()
+    end
+  end
+
+  describe "enumerable" do
+    test "length of a list", lists do
+      assert lists.empty_list |> Enum.empty?()
+      assert Enum.count(lists.list) == 5
+    end
+
+    test "map over a list", %{list: list} do
+      assert Enum.map(list, fn elem -> elem ** 2 end) == [1, 4, 9, 16, 25]
+    end
+
+    test "filter over a list", %{list: list} do
+      assert Enum.filter(list, fn elem -> elem > 1 end) == [2, 3, 4, 5]
+    end
+
+    test "convert a list to a set", %{list: list} do
+      assert Enum.into(list, %MapSet{}) == MapSet.new([1, 2, 3, 4, 5])
     end
   end
 end

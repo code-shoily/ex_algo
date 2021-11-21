@@ -101,7 +101,7 @@ defmodule ExAlgo.StackTest do
   end
 
   describe "enumerable" do
-    test "Length of a stack", stacks do
+    test "length of a stack", stacks do
       assert stacks.empty_stack |> Enum.empty?()
       assert Enum.count(stacks.singleton_stack) == 1
       assert Enum.count(stacks.stack) == 3
