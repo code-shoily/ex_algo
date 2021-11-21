@@ -98,7 +98,7 @@ defmodule ExAlgo.StackTest do
     end
 
     test "Map over a stack", %{stack: stack} do
-      assert Enum.map(stack, fn elem -> elem**2 end) == [1, 4, 9]
+      assert Enum.map(stack, fn elem -> elem ** 2 end) == [1, 4, 9]
     end
 
     test "Filter over a stack", %{stack: stack} do
@@ -106,7 +106,7 @@ defmodule ExAlgo.StackTest do
     end
 
     test "Convert a stack to a set", %{stack: stack} do
-      assert Enum.into(stack, %MapSet{}) == MapSet.new([1,2,3])
+      assert Enum.into(stack, %MapSet{}) == MapSet.new([1, 2, 3])
     end
   end
 end
