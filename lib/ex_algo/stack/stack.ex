@@ -11,7 +11,7 @@ defmodule ExAlgo.Stack do
   @type value_type :: any()
   @type t :: %__MODULE__{container: [value_type()]}
 
-  @doc"""
+  @doc """
   Create a new empty stack
 
   ## Example
@@ -24,7 +24,7 @@ defmodule ExAlgo.Stack do
   @spec new() :: t()
   def new, do: %__MODULE__{}
 
-  @doc"""
+  @doc """
   Create a new stack from an enumerable. Note that the stack container has the order inversed as each element of the
   iterable is pushed into the stack, thereby putting the last element on top.
 
