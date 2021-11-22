@@ -100,8 +100,7 @@ defmodule ExAlgo.List.LinkedListTest do
 
   describe "collectable" do
     test "convert a List into LinkedList" do
-      list =
-        for i <- 1..10, into: %LinkedList{}, do: i
+      list = for i <- 1..10, into: %LinkedList{}, do: i
       assert list.container == 1..10 |> Enum.to_list()
     end
   end
