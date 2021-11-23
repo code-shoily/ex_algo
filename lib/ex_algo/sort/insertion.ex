@@ -23,6 +23,7 @@ defmodule ExAlgo.Sort.Insertion do
   """
   @spec insertion_sort(t) :: t
   def insertion_sort([]), do: []
+
   def insertion_sort([head | rest]) do
     rest
     |> insertion_sort()
