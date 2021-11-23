@@ -24,6 +24,7 @@ defmodule ExAlgo.Sort.Merge do
   @spec merge_sort(t) :: t
   def merge_sort([]), do: []
   def merge_sort([_] = list), do: list
+
   def merge_sort(list) do
     half = list |> length() |> div(2)
 
@@ -39,5 +40,5 @@ defmodule ExAlgo.Sort.Merge do
   defp merge([], right), do: right
   defp merge(left, []), do: left
   defp merge([x | xs], [y | _] = right) when x < y, do: [x | merge(xs, right)]
-  defp merge(left, [y | ys] ), do: [y | merge(ys, left)]
+  defp merge(left, [y | ys]), do: [y | merge(ys, left)]
 end
