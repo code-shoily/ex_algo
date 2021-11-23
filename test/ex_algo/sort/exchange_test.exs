@@ -1,9 +1,9 @@
 defmodule ExAlgo.Sort.ExchangeTest do
-	use ExUnit.Case
+  use ExUnit.Case
   use ExUnitProperties
   @moduletag :exchange_sorts
 
-	doctest ExAlgo.Sort.Exchange
+  doctest ExAlgo.Sort.Exchange
 
   alias ExAlgo.Sort.Exchange
 
