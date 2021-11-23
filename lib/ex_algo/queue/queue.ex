@@ -31,11 +31,12 @@ defmodule ExAlgo.Queue do
 
       iex> alias ExAlgo.Queue
       iex> ExAlgo.Queue.from 1..3
-      %Queue{left: [1, 2, 3], right: []}
+      %Queue{left: [3, 2, 1], right: []}
 
   """
   @spec from(Enumerable.t()) :: t()
-  def from(enumerable), do: %__MODULE__{left: Enum.to_list(enumerable), right: []}
+  def from(enumerable),
+    do: %__MODULE__{left: enumerable |> Enum.to_list() |> Enum.reverse(), right: []}
 
   @doc """
   Enqueues item in left of the queue.
@@ -57,7 +58,7 @@ defmodule ExAlgo.Queue do
 
       iex> alias ExAlgo.Queue
       iex> 1..4 |> Queue.from() |> Queue.dequeue()
-      {4, %Queue{left: [], right: [3, 2, 1]}}
+      {1, %Queue{left: [], right: [2, 3, 4]}}
 
       iex> alias ExAlgo.Queue
       iex> Queue.new |> Queue.dequeue()
@@ -83,7 +84,7 @@ defmodule ExAlgo.Queue do
       iex> alias ExAlgo.Queue
       iex> {_, queue} = 1..4 |> Queue.from() |> Queue.dequeue()
       iex> queue |> Queue.enqueue(5) |> Queue.append(6)
-      %Queue{left: [5], right: [6, 3, 2, 1]}
+      %Queue{left: [5], right: [6, 2, 3, 4]}
 
   """
   @spec append(t(), value_type()) :: t()
@@ -100,7 +101,7 @@ defmodule ExAlgo.Queue do
 
       iex> alias ExAlgo.Queue
       iex> Queue.from(1..4) |> Queue.to_list()
-      [1, 2, 3, 4]
+      [4, 3, 2, 1]
 
       iex> alias ExAlgo.Queue
       iex> Queue.from(1..4)
@@ -109,7 +110,7 @@ defmodule ExAlgo.Queue do
       ...> |> Queue.enqueue(-1)
       ...> |> Queue.append(10)
       ...> |> Queue.to_list()
-      [-1, 1, 2, 3, 10]
+      [-1, 4, 3, 2, 10]
 
   """
   @spec to_list(t()) :: List.t()
