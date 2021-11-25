@@ -21,6 +21,7 @@ defmodule ExAlgo.Sort.Exchange do
       [-1, 2, 5, 7]
 
   """
+  @spec bubble_sort(t) :: t
   def bubble_sort(list), do: list |> bubble(true, [])
   defp bubble([], true, acc), do: acc |> Enum.reverse()
   defp bubble([], false, acc), do: acc |> Enum.reverse() |> bubble(true, [])
