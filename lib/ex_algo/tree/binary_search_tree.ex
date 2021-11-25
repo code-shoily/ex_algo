@@ -4,12 +4,13 @@ defmodule ExAlgo.Tree.BinarySearchTree do
   """
   @type key_type :: any()
   @type value_type :: any()
+  @type key_fn :: (value_type() -> key_type())
   @type leaf :: nil
   @type t() :: %__MODULE__{
-    data: value_type(),
-    left: t() | leaf(),
-    right: t() | leaf()
-  }
+          data: value_type(),
+          left: t() | leaf(),
+          right: t() | leaf()
+        }
 
   @identity &Function.identity/1
 
@@ -117,9 +118,10 @@ defmodule ExAlgo.Tree.BinarySearchTree do
       nil
 
   """
-  @spec find(t() | nil, key_type(), any()) :: nil | value_type()
+  @spec find(t() | nil, key_type(), key_fn()) :: nil | value_type()
   def find(_, _, key_fn \\ @identity)
   def find(nil, _, _), do: nil
+
   def find(%__MODULE__{data: data, left: left, right: right}, key, key_fn) do
     case key_fn.(data) do
       ^key -> data
