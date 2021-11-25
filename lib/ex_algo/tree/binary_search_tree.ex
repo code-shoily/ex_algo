@@ -36,6 +36,36 @@ defmodule ExAlgo.Tree.BinarySearchTree do
   def new(data), do: %__MODULE__{data: data}
 
   @doc """
+  Creates a binary search tree from a list.
+
+  ## Example
+
+      iex> alias ExAlgo.Tree.BinarySearchTree, as: BST
+      iex> BST.from [5, 4, 7]
+      %BST{
+        data: 5,
+        left: %BST{
+          data: 4,
+          left: nil,
+          right: nil
+        },
+        right: %BST{
+          data: 7,
+          left: nil,
+          right: nil
+        }
+      }
+  """
+  @spec from([value_type()]) :: t()
+  def from([x | xs]) do
+    xs
+    |> Enum.reduce(
+      __MODULE__.new(x),
+      fn item, tree -> tree |> insert(item) end
+    )
+  end
+
+  @doc """
   Insert a new item in the correct position in the tree.
 
   ## Example
@@ -95,23 +125,19 @@ defmodule ExAlgo.Tree.BinarySearchTree do
   ## Example
 
       iex> alias ExAlgo.Tree.BinarySearchTree, as: BST
-      iex> tree =
-      ...>    BST.new(10)
-      ...>    |> BST.insert(11)
-      ...>    |> BST.insert(-34)
-      ...>    |> BST.insert(14)
-      ...>    |> BST.insert(0)
-      ...>    |> BST.insert(-75)
+      iex> tree = BST.from [10, 11, -34, 14, 0, -75]
       iex> BST.find(tree, 11)
       11
       iex> BST.find(tree, 9)
       nil
 
       iex> alias ExAlgo.Tree.BinarySearchTree, as: BST
-      iex> tree =
-      ...>    BST.new(%{id: 1, language: "Elixir"})
-      ...>    |> BST.insert(%{id: 2, language: "Python"})
-      ...>    |> BST.insert(%{id: 3, language: "C++"})
+      iex> languages = [
+      ...>  %{id: 1, language: "Elixir"},
+      ...>  %{id: 2, language: "Python"},
+      ...>  %{id: 3, language: "C++"}
+      ...> ]
+      iex> tree = BST.from(languages)
       iex> BST.find(tree, 2, & &1.id)
       %{id: 2, language: "Python"}
       iex> BST.find(tree, 6, & &1.id)
