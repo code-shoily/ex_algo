@@ -6,5 +6,6 @@ defmodule ExAlgo.Sort do
 
   defdelegate insertion_sort(list), to: Insertion, as: :insertion_sort
   defdelegate merge_sort(list), to: Merge, as: :merge_sort
+  defdelegate bubble_sort(list), to: Exchange, as: :bubble_sort
   defdelegate quick_sort(list), to: Exchange, as: :quick_sort
 end
