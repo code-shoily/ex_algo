@@ -28,12 +28,29 @@ TODO - Add ex_doc pages with detailed explanations of each categories.
 | Name | Implementation | Test | Benchmark | Note |
 | :--: | :------------: | :--: | :-------: | :--: |
 
+## Queue
+| Name | Implementation | Test | Benchmark | Note |
+| :--: | :------------: | :--: | :-------: | :--: |
+| Queue | [queue.ex](lib/ex_algo/queue/queue.ex) | [Yes](test/ex_algo/queue/queue_test.exs) | No | |
+
 ## Search
 | Name | Implementation | Test | Benchmark | Note |
 | :--: | :------------: | :--: | :-------: | :--: |
+
 ## Sort
 | Name | Implementation | Test | Benchmark | Note |
 | :--: | :------------: | :--: | :-------: | :--: |
+| Bubble Sort | [exchange.ex](lib/ex_algo/sort/exchange.ex) | [Yes](test/ex_algo/sort/exchange_test.exs) | No | |
+| Insertion Sort | [insertion.ex](lib/ex_algo/sort/insertion.ex) | [Yes](test/ex_algo/sort/insertion_test.exs) | No | |
+| Merge Sort | [merge.ex](lib/ex_algo/sort/merge.ex) | [Yes](test/ex_algo/sort/merge_test.exs) | No | |
+| Pigeonhole Sort | [distribution.ex](lib/ex_algo/sort/distribution.ex) | [Yes](test/ex_algo/sort/distribution_test.exs) | No | |
+| Quick Sort | [exchange.ex](lib/ex_algo/sort/exchange.ex) | [Yes](test/ex_algo/sort/exchange_test.exs) | No | |
+| Selection Sort | [selection.ex](lib/ex_algo/sort/selection.ex) | [Yes](test/ex_algo/sort/selection_test.exs) | No | |
+
+## Stack
+| Name | Implementation | Test | Benchmark | Note |
+| :--: | :------------: | :--: | :-------: | :--: |
+| Stack | [queue.ex](lib/ex_algo/stack/stack.ex) | [Yes](test/ex_algo/stack/stack_test.exs) | No | |
 
 ## String
 | Name | Implementation | Test | Benchmark | Note |
@@ -42,6 +59,8 @@ TODO - Add ex_doc pages with detailed explanations of each categories.
 ## Trees
 | Name | Implementation | Test | Benchmark | Note |
 | :--: | :------------: | :--: | :-------: | :--: |
+| Binary Search Tree | [binary_search_tree.ex](lib/ex_algo/tree/binary_search_tree.ex) | [Yes](test/ex_algo/tree/binary_search_tree_test.exs) | No | |
+| Tree Traversals | [traversal.ex](lib/ex_algo/tree/traversal.ex) | [Yes](test/ex_algo/tree/traversal_test.exs) | No | |
 
 ## Tries
 | Name | Implementation | Test | Benchmark | Note |
