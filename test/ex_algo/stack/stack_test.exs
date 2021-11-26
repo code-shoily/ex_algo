@@ -28,7 +28,7 @@ defmodule ExAlgo.StackTest do
     end
 
     property "creating a stack from a list always has the container in reversed order" do
-      check all list <- list_of(term()) do
+      check all list <- list_of(integer()) do
         stack = Stack.from(list)
         assert stack.container == Enum.reverse(list)
       end

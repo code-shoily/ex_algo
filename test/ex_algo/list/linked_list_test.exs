@@ -23,7 +23,7 @@ defmodule ExAlgo.List.LinkedListTest do
 
   describe "from/1" do
     property "The list that is passed in is the container of the created list" do
-      check all list <- list_of(term()) do
+      check all list <- list_of(integer()) do
         %LinkedList{container: container} = LinkedList.from(list)
         assert container == list
       end
@@ -55,7 +55,7 @@ defmodule ExAlgo.List.LinkedListTest do
 
   describe "head/1" do
     property "head always returns the head of the underlying list" do
-      check all list <- nonempty(list_of(term())) do
+      check all list <- nonempty(list_of(integer())) do
         linked_list = LinkedList.from(list)
         assert LinkedList.head(linked_list) == hd(list)
       end
@@ -64,7 +64,7 @@ defmodule ExAlgo.List.LinkedListTest do
 
   describe "tail/1" do
     property "tail always returns the tail of the underlying list" do
-      check all list <- nonempty(list_of(term())) do
+      check all list <- nonempty(list_of(integer())) do
         linked_list = LinkedList.from(list)
         assert LinkedList.tail(linked_list) == tl(list)
       end

@@ -1,4 +1,4 @@
-alias ExAlgo.List.{LinkedList}
+alias ExAlgo.List.{CircularList, LinkedList}
 alias ExAlgo.Queue
 alias ExAlgo.Sort
 alias ExAlgo.Stack
