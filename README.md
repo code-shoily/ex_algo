@@ -22,6 +22,7 @@ TODO - Add ex_doc pages with detailed explanations of each categories.
 ## Lists
 | Name | Implementation | Test | Benchmark | Note |
 | :--: | :------------: | :--: | :-------: | :--: |
+| Linked List | [linked_list.ex](lib/ex_algo/list/linked_list.ex) | [Yes](test/ex_algo/list/linked_list_test.exs) | No | |
 
 ## Purely Functional Data Structures
 | Name | Implementation | Test | Benchmark | Note |
