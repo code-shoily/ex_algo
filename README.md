@@ -2,22 +2,47 @@
 
 `ExAlgo` is a collection of data structures and algorithms implemented in Elixir. This is the authors attempt to see algorithms through Elixir's lens.
 
-## Installation
+## Development
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `ex_algo` to your list of dependencies in `mix.exs`:
+Download this repo and get the dependencies with `mix deps.get`. Go to `iex -S mix` to try out the algorithms in the REPL. `mix test` runs all the tests.
 
-```elixir
-def deps do
-  [
-    {:ex_algo, "~> 0.1.0"}
-  ]
-end
-```
+## Detailed Documentation
+TODO - Add ex_doc pages with detailed explanations of each categories.
 
-Run `mix test` to run all the tests.
+## Catalogue
 
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at <https://hexdocs.pm/ex_algo>.
+## Graphs
+| Name | Implementation | Test | Benchmark | Note |
+| :--: | :------------: | :--: | :-------: | :--: |
+
+## Heaps
+| Name | Implementation | Test | Benchmark | Note |
+| :--: | :------------: | :--: | :-------: | :--: |
+
+## Lists
+| Name | Implementation | Test | Benchmark | Note |
+| :--: | :------------: | :--: | :-------: | :--: |
+
+## Purely Functional Data Structures
+| Name | Implementation | Test | Benchmark | Note |
+| :--: | :------------: | :--: | :-------: | :--: |
+
+## Search
+| Name | Implementation | Test | Benchmark | Note |
+| :--: | :------------: | :--: | :-------: | :--: |
+## Sort
+| Name | Implementation | Test | Benchmark | Note |
+| :--: | :------------: | :--: | :-------: | :--: |
+
+## String
+| Name | Implementation | Test | Benchmark | Note |
+| :--: | :------------: | :--: | :-------: | :--: |
+
+## Trees
+| Name | Implementation | Test | Benchmark | Note |
+| :--: | :------------: | :--: | :-------: | :--: |
+
+## Tries
+| Name | Implementation | Test | Benchmark | Note |
+| :--: | :------------: | :--: | :-------: | :--: |
 
