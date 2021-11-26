@@ -3,9 +3,9 @@ defmodule ExAlgo.List.LinkedListTest do
   use ExUnitProperties
   @moduletag :linked_list
 
-  doctest ExAlgo.List.LinkedList
-
   alias ExAlgo.List.LinkedList
+
+  doctest ExAlgo.List.LinkedList
 
   setup_all do
     {:ok,
@@ -62,11 +62,11 @@ defmodule ExAlgo.List.LinkedListTest do
     end
   end
 
-  describe "tail/1" do
-    property "tail always returns the tail of the underlying list" do
+  describe "next/1" do
+    property "next always returns the tail of the underlying list" do
       check all list <- nonempty(list_of(integer())) do
         linked_list = LinkedList.from(list)
-        assert LinkedList.tail(linked_list) == tl(list)
+        assert LinkedList.next(linked_list).container == tl(list)
       end
     end
   end
@@ -101,7 +101,7 @@ defmodule ExAlgo.List.LinkedListTest do
   describe "collectable" do
     test "convert a List into LinkedList" do
       list = for i <- 1..10, into: %LinkedList{}, do: i
-      assert list.container == 1..10 |> Enum.to_list()
+      assert list.container == 10..1 |> Enum.to_list()
     end
   end
 
@@ -121,6 +121,14 @@ defmodule ExAlgo.List.LinkedListTest do
 
     test "convert a list to a set", %{list: list} do
       assert Enum.into(list, %MapSet{}) == MapSet.new([1, 2, 3, 4, 5])
+    end
+  end
+
+  property "linked list from copies the list into container but enum into inserts one by one" do
+    check all list <- nonempty(list_of(integer())) do
+      list_1 = LinkedList.from(list)
+      list_2 = Enum.into(list, %LinkedList{})
+      assert list_1.container == list_2.container |> Enum.reverse()
     end
   end
 end

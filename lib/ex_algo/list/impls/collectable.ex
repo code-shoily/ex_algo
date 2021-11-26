@@ -6,7 +6,7 @@ defimpl Collectable, for: LinkedList do
   end
 
   defp insert(list, {:cont, item}), do: LinkedList.insert(list, item)
-  defp insert(list, :done), do: list.container |> Enum.reverse() |> LinkedList.from()
+  defp insert(list, :done), do: list
   defp insert(_list, :halt), do: :ok
 end
 
