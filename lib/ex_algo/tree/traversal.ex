@@ -22,6 +22,7 @@ defmodule ExAlgo.Tree.Traversal do
   def inorder(%{data: data, left: left, right: right}) do
     inorder(left) ++ [data] ++ inorder(right)
   end
+
   def inorder(nil), do: []
 
   @doc """
@@ -40,6 +41,7 @@ defmodule ExAlgo.Tree.Traversal do
   def preorder(%{data: data, left: left, right: right}) do
     [data] ++ preorder(left) ++ preorder(right)
   end
+
   def preorder(nil), do: []
 
   @doc """
@@ -58,5 +60,6 @@ defmodule ExAlgo.Tree.Traversal do
   def postorder(%{data: data, left: left, right: right}) do
     postorder(left) ++ postorder(right) ++ [data]
   end
+
   def postorder(nil), do: []
 end

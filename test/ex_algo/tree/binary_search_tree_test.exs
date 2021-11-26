@@ -15,7 +15,7 @@ defmodule ExAlgo.Tree.BinarySearchTreeTest do
   end
 
   property "Inorder traversal on a binary tree will produce sorted data" do
-    check all list <- nonempty list_of(integer()) do
+    check all list <- nonempty(list_of(integer())) do
       tree = BinarySearchTree.from(list)
       inorder_traversal = Traversal.inorder(tree)
 
