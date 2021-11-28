@@ -24,3 +24,20 @@ defimpl Inspect, for: CircularList do
     ])
   end
 end
+
+defimpl Inspect, for: BidirectionalList do
+  import Inspect.Algebra
+
+  def inspect(%BidirectionalList{} = circular_list, opts) do
+    left = to_doc(circular_list.visited, opts)
+    right = to_doc(circular_list.upcoming, opts)
+
+    concat([
+      "#ExAlgo.BidirectionalList<",
+      left,
+      "|",
+      right,
+      ">"
+    ])
+  end
+end
