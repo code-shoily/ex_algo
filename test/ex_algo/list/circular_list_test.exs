@@ -9,11 +9,22 @@ defmodule ExAlgo.List.CircularListTest do
 
   describe "inspect" do
     test "inspect an empty list" do
-      assert inspect(CircularList.new()) == "#ExAlgo.CircularList<[]>"
+      assert inspect(CircularList.new()) == "#ExAlgo.CircularList<[]|[]>"
     end
 
     test "inspect an non-empty list" do
-      assert inspect(CircularList.from(1..5)) == "#ExAlgo.CircularList<[1, 2, 3, 4, 5]>"
+      assert inspect(CircularList.from(1..5)) == "#ExAlgo.CircularList<[]|[1, 2, 3, 4, 5]>"
+    end
+
+    test "inspect an non-empty traversed list" do
+      list = CircularList.from(1..3) |> CircularList.next()
+      assert inspect(list) == "#ExAlgo.CircularList<[1]|[2, 3]>"
+
+      list = list |> CircularList.next()
+      assert inspect(list) == "#ExAlgo.CircularList<[2, 1]|[3]>"
+
+      list = list |> CircularList.next()
+      assert inspect(list) == "#ExAlgo.CircularList<[3, 2, 1]|[]>"
     end
   end
 

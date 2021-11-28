@@ -1,4 +1,4 @@
-alias ExAlgo.List.{CircularList, LinkedList}
+alias ExAlgo.List.{BidirectionalList, CircularList, LinkedList}
 
 defimpl Inspect, for: LinkedList do
   import Inspect.Algebra
@@ -12,6 +12,15 @@ defimpl Inspect, for: CircularList do
   import Inspect.Algebra
 
   def inspect(%CircularList{} = circular_list, opts) do
-    concat(["#ExAlgo.CircularList<", to_doc(CircularList.to_list(circular_list), opts), ">"])
+    left = to_doc(circular_list.visited, opts)
+    right = to_doc(circular_list.upcoming, opts)
+
+    concat([
+      "#ExAlgo.CircularList<",
+      left,
+      "|",
+      right,
+      ">"
+    ])
   end
 end
