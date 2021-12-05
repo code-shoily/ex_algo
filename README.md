@@ -69,3 +69,7 @@ TODO - Add ex_doc pages with detailed explanations of each categories.
 | Name | Implementation | Test | Benchmark | Link | Note |
 | :--: | :------------: | :--: | :-------: | :--: | :--: |
 
+## Numbers
+| Name | Implementation | Test | Benchmark | Link | Note |
+| :--: | :------------: | :--: | :-------: | :--: | :--: |
+| Chinese Remainder Theorem | [chinese_remainder.ex](lib/ex_algo/number/chinese_remainder.ex) | [Yes](test/ex_algo/number/chinese_remainder_test.exs) | No | | |
