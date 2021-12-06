@@ -25,6 +25,7 @@ TODO - Add ex_doc pages with detailed explanations of each categories.
 | Linked List | [linked_list.ex](lib/ex_algo/list/linked_list.ex) | [Yes](test/ex_algo/list/linked_list_test.exs) | No | | |
 | Circular List | [circular_list.ex](lib/ex_algo/list/circular_list.ex) | [Yes](test/ex_algo/list/circular_list_test.exs) | No | | |
 | BidirectionalList | [bidirectional_list.ex](lib/ex_algo/list/bidirectional_list.ex) | [Yes](test/ex_algo/list/bidirectional_list_test.exs) | No | | WIP |
+| Maximum Subarray Sum | [algorithms.ex](lib/ex_algo/list/algorithms.ex) | [Yes](test/ex_algo/list/algorithms_test.exs) | No | | Kadane's Algorithm |
 
 
 ## Functional/Immutable
