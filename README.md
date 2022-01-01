@@ -2,6 +2,8 @@
 
 `ExAlgo` is a collection of data structures and algorithms implemented in Elixir. This is the authors attempt to see algorithms through Elixir's lens.
 
+The sole purpose of this is to use as a learning tool for algorithms in a functional language set-up. I am also thinking of using this to host some algorithms that could come in handy while solving Advent of Code. Almost all algorithms mentioned here have well tested and production ready libraries so I see little use that anyone would want to use this for anything serious.
+
 ## Development
 
 Download this repo and get the dependencies with `mix deps.get`. Go to `iex -S mix` to try out the algorithms in the REPL. `mix test` runs all the tests.
