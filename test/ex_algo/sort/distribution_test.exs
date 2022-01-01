@@ -3,9 +3,9 @@ defmodule ExAlgo.Sort.DistributionTest do
   use ExUnitProperties
   @moduletag :distribution_sort
 
-  doctest ExAlgo.Sort.Distribution
-
   alias ExAlgo.Sort.Distribution
+
+  doctest ExAlgo.Sort.Distribution
 
   describe "pigeonhole_sort/1" do
     property "pigeonhole_sort sorts properly" do

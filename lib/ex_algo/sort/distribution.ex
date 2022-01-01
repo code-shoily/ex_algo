@@ -10,14 +10,16 @@ defmodule ExAlgo.Sort.Distribution do
 
   ## Example
 
-      iex> import ExAlgo.Sort.Distribution
-      iex> pigeonhole_sort([])
+      iex> Distribution.pigeonhole_sort([])
       []
-      iex> pigeonhole_sort([1])
+
+      iex> Distribution.pigeonhole_sort([1])
       [1]
-      iex> pigeonhole_sort([3, 2, 1])
+
+      iex> Distribution.pigeonhole_sort([3, 2, 1])
       [1, 2, 3]
-      iex> pigeonhole_sort([2, 7, -1, 5])
+
+      iex> Distribution.pigeonhole_sort([2, 7, -1, 5])
       [-1, 2, 5, 7]
 
   """

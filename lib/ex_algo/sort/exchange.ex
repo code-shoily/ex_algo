@@ -10,14 +10,16 @@ defmodule ExAlgo.Sort.Exchange do
 
   ## Example
 
-      iex> import ExAlgo.Sort.Exchange
-      iex> bubble_sort([])
+      iex> Exchange.bubble_sort([])
       []
-      iex> bubble_sort([1])
+
+      iex> Exchange.bubble_sort([1])
       [1]
-      iex> bubble_sort([3, 2, 1])
+
+      iex> Exchange.bubble_sort([3, 2, 1])
       [1, 2, 3]
-      iex> bubble_sort([2, 7, -1, 5])
+
+      iex> Exchange.bubble_sort([2, 7, -1, 5])
       [-1, 2, 5, 7]
 
   """
@@ -33,14 +35,16 @@ defmodule ExAlgo.Sort.Exchange do
 
   ## Example
 
-      iex> import ExAlgo.Sort.Exchange
-      iex> quick_sort([])
+      iex> Exchange.quick_sort([])
       []
-      iex> quick_sort([1])
+
+      iex> Exchange.quick_sort([1])
       [1]
-      iex> quick_sort([3, 2, 1])
+
+      iex> Exchange.quick_sort([3, 2, 1])
       [1, 2, 3]
-      iex> quick_sort([2, 7, -1, 5])
+
+      iex> Exchange.quick_sort([2, 7, -1, 5])
       [-1, 2, 5, 7]
 
   """

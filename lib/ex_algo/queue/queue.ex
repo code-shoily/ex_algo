@@ -16,7 +16,6 @@ defmodule ExAlgo.Queue do
 
   ## Example
 
-      iex> alias ExAlgo.Queue
       iex> Queue.new()
       %Queue{left: [], right: []}
 
@@ -29,7 +28,6 @@ defmodule ExAlgo.Queue do
 
   ## Example
 
-      iex> alias ExAlgo.Queue
       iex> ExAlgo.Queue.from 1..3
       %Queue{left: [3, 2, 1], right: []}
 
@@ -43,7 +41,6 @@ defmodule ExAlgo.Queue do
 
   ## Example
 
-      iex> alias ExAlgo.Queue
       iex> Queue.new |> Queue.enqueue(10) |> Queue.enqueue(20)
       %Queue{left: [20, 10], right: []}
 
@@ -56,11 +53,9 @@ defmodule ExAlgo.Queue do
 
   ## Example
 
-      iex> alias ExAlgo.Queue
       iex> 1..4 |> Queue.from() |> Queue.dequeue()
       {1, %Queue{left: [], right: [2, 3, 4]}}
 
-      iex> alias ExAlgo.Queue
       iex> Queue.new |> Queue.dequeue()
       {:error, :underflow}
 
@@ -77,11 +72,9 @@ defmodule ExAlgo.Queue do
 
   ## Example
 
-      iex> alias ExAlgo.Queue
       iex> Queue.new |> Queue.append(10)
       %Queue{left: [], right: [10]}
 
-      iex> alias ExAlgo.Queue
       iex> {_, queue} = 1..4 |> Queue.from() |> Queue.dequeue()
       iex> queue |> Queue.enqueue(5) |> Queue.append(6)
       %Queue{left: [5], right: [6, 2, 3, 4]}
@@ -95,15 +88,12 @@ defmodule ExAlgo.Queue do
 
   ## Example
 
-      iex> alias ExAlgo.Queue
       iex> Queue.new() |> Queue.to_list()
       []
 
-      iex> alias ExAlgo.Queue
       iex> Queue.from(1..4) |> Queue.to_list()
       [4, 3, 2, 1]
 
-      iex> alias ExAlgo.Queue
       iex> Queue.from(1..4)
       ...> |> Queue.dequeue()
       ...> |> then(fn {_, queue} -> queue end)

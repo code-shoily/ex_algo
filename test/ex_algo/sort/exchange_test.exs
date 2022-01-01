@@ -3,9 +3,9 @@ defmodule ExAlgo.Sort.ExchangeTest do
   use ExUnitProperties
   @moduletag :exchange_sorts
 
-  doctest ExAlgo.Sort.Exchange
-
   alias ExAlgo.Sort.Exchange
+
+  doctest ExAlgo.Sort.Exchange
 
   describe "quick_sort/1" do
     property "ensure quick_sort done by any list produces the same result as enum sort" do

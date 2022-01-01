@@ -11,8 +11,6 @@ defmodule ExAlgo.Tree.Traversal do
 
   ## Example
 
-      iex> alias ExAlgo.Tree.BinarySearchTree, as: BST
-      iex> alias ExAlgo.Tree.Traversal
       iex> tree = BST.from([30, 20, 40, 15, 25, 35, 50, 5, 18, 45, 60])
       iex> tree |> Traversal.inorder()
       [5, 15, 18, 20, 25, 30, 35, 40, 45, 50, 60]
@@ -30,8 +28,6 @@ defmodule ExAlgo.Tree.Traversal do
 
   ## Example
 
-      iex> alias ExAlgo.Tree.BinarySearchTree, as: BST
-      iex> alias ExAlgo.Tree.Traversal
       iex> tree = BST.from([30, 20, 40, 15, 25, 35, 50, 5, 18, 45, 60])
       iex> tree |> Traversal.preorder()
       [30, 20, 15, 5, 18, 25, 40, 35, 50, 45, 60]
@@ -49,8 +45,6 @@ defmodule ExAlgo.Tree.Traversal do
 
   ## Example
 
-      iex> alias ExAlgo.Tree.BinarySearchTree, as: BST
-      iex> alias ExAlgo.Tree.Traversal
       iex> tree = BST.from([30, 20, 40, 15, 25, 35, 50, 5, 18, 45, 60])
       iex> tree |> Traversal.postorder()
       [5, 18, 15, 25, 20, 35, 45, 60, 50, 40, 30]

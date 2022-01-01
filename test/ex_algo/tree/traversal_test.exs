@@ -2,9 +2,10 @@ defmodule ExAlgo.Tree.TraversalTest do
   use ExUnit.Case
   @moduletag :tree_traversal
 
-  doctest ExAlgo.Tree.Traversal
-
+  alias ExAlgo.Tree.BinarySearchTree, as: BST
   alias ExAlgo.Tree.Traversal
+
+  doctest ExAlgo.Tree.Traversal
 
   describe "inorder/1" do
     test "inorder traversal for nil is empty" do

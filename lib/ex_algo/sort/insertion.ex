@@ -10,14 +10,16 @@ defmodule ExAlgo.Sort.Insertion do
 
   ## Example
 
-      iex> import ExAlgo.Sort.Insertion
-      iex> insertion_sort([])
+      iex> Insertion.insertion_sort([])
       []
-      iex> insertion_sort([1])
+
+      iex> Insertion.insertion_sort([1])
       [1]
-      iex> insertion_sort([3, 2, 1])
+
+      iex> Insertion.insertion_sort([3, 2, 1])
       [1, 2, 3]
-      iex> insertion_sort([2, 7, -1, 5])
+
+      iex> Insertion.insertion_sort([2, 7, -1, 5])
       [-1, 2, 5, 7]
 
   """

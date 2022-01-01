@@ -10,14 +10,16 @@ defmodule ExAlgo.Sort.Selection do
 
   ## Example
 
-      iex> import ExAlgo.Sort.Selection
-      iex> selection_sort([])
+      iex> Selection.selection_sort([])
       []
-      iex> selection_sort([1])
+
+      iex> Selection.selection_sort([1])
       [1]
-      iex> selection_sort([3, 2, 1])
+
+      iex> Selection.selection_sort([3, 2, 1])
       [1, 2, 3]
-      iex> selection_sort([2, 7, -1, 5])
+
+      iex> Selection.selection_sort([2, 7, -1, 5])
       [-1, 2, 5, 7]
 
   """

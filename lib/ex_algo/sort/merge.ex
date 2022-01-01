@@ -10,14 +10,16 @@ defmodule ExAlgo.Sort.Merge do
 
   ## Example
 
-      iex> import ExAlgo.Sort.Merge
-      iex> merge_sort([])
+      iex> Merge.merge_sort([])
       []
-      iex> merge_sort([1])
+
+      iex> Merge.merge_sort([1])
       [1]
-      iex> merge_sort([3, 2, 1])
+
+      iex> Merge.merge_sort([3, 2, 1])
       [1, 2, 3]
-      iex> merge_sort([2, 7, -1, 5])
+
+      iex> Merge.merge_sort([2, 7, -1, 5])
       [-1, 2, 5, 7]
 
   """

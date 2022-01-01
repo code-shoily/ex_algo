@@ -3,9 +3,9 @@ defmodule ExAlgo.Sort.MergeTest do
   use ExUnitProperties
   @moduletag :merge_sorts
 
-  doctest ExAlgo.Sort.Merge
-
   alias ExAlgo.Sort.Merge
+
+  doctest ExAlgo.Sort.Merge
 
   describe "merge_sort/1" do
     property "ensure merge_sort done by any list produces the same result as enum sort" do

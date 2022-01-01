@@ -3,9 +3,9 @@ defmodule ExAlgo.Sort.SelectionTest do
   use ExUnitProperties
   @moduletag :selection_sort
 
-  doctest ExAlgo.Sort.Selection
-
   alias ExAlgo.Sort.Selection
+
+  doctest ExAlgo.Sort.Selection
 
   describe "selection_sort/1" do
     property "selection_sort sorts properly" do

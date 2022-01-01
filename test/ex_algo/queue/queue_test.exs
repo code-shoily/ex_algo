@@ -2,9 +2,9 @@ defmodule ExAlgo.QueueTest do
   use ExUnit.Case
   @moduletag :queue
 
-  doctest ExAlgo.Queue
-
   alias ExAlgo.Queue
+
+  doctest ExAlgo.Queue
 
   describe "inspect" do
     test "inspect a queue" do

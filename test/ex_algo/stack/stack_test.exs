@@ -3,9 +3,9 @@ defmodule ExAlgo.StackTest do
   use ExUnitProperties
   @moduletag :stack
 
-  doctest ExAlgo.Stack
-
   alias ExAlgo.Stack
+
+  doctest ExAlgo.Stack
 
   setup_all do
     {:ok,

@@ -3,9 +3,9 @@ defmodule ExAlgo.Sort.InsertionTest do
   use ExUnitProperties
   @moduletag :insertion_sorts
 
-  doctest ExAlgo.Sort.Insertion
-
   alias ExAlgo.Sort.Insertion
+
+  doctest ExAlgo.Sort.Insertion
 
   describe "insertion_sort/1" do
     property "ensure insertion_sort done by any list produces the same result as enum sort" do

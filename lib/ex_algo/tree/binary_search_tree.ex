@@ -24,11 +24,9 @@ defmodule ExAlgo.Tree.BinarySearchTree do
 
   ## Example
 
-      iex> alias ExAlgo.Tree.BinarySearchTree, as: BST
       iex> BST.new(0)
       %BST{data: 0, left: nil, right: nil}
 
-      iex> alias ExAlgo.Tree.BinarySearchTree, as: BST
       iex> BST.new(%{id: 10, name: "Mafinar"})
       %BST{data: %{id: 10, name: "Mafinar"}, left: nil, right: nil}
 
@@ -40,7 +38,6 @@ defmodule ExAlgo.Tree.BinarySearchTree do
 
   ## Example
 
-      iex> alias ExAlgo.Tree.BinarySearchTree, as: BST
       iex> BST.from [5, 4, 7]
       %BST{
         data: 5,
@@ -70,7 +67,6 @@ defmodule ExAlgo.Tree.BinarySearchTree do
 
   ## Example
 
-      iex> alias ExAlgo.Tree.BinarySearchTree, as: BST
       iex> BST.new(10)
       ...> |> BST.insert(11)
       ...> |> BST.insert(-34)
@@ -124,14 +120,12 @@ defmodule ExAlgo.Tree.BinarySearchTree do
 
   ## Example
 
-      iex> alias ExAlgo.Tree.BinarySearchTree, as: BST
       iex> tree = BST.from [10, 11, -34, 14, 0, -75]
       iex> BST.find(tree, 11)
       11
       iex> BST.find(tree, 9)
       nil
 
-      iex> alias ExAlgo.Tree.BinarySearchTree, as: BST
       iex> languages = [
       ...>  %{id: 1, language: "Elixir"},
       ...>  %{id: 2, language: "Python"},
