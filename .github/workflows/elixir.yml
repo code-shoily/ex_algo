@@ -12,6 +12,10 @@ jobs:
     name: Build and test
     runs-on: ubuntu-latest
 
+    env:
+      MIX_ENV: test
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
     steps:
     - uses: actions/checkout@v2
     - name: Set up Elixir
@@ -29,3 +33,5 @@ jobs:
       run: mix deps.get
     - name: Run tests
       run: mix test
+    - name: Coveralls
+      run: mix coveralls.github
