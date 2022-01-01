@@ -39,8 +39,13 @@ defmodule ExAlgo.Sort.Distribution do
   def pigeonhole_sort(base, size, pigeonhole) do
     Enum.reduce(0..size, [], fn x, acc ->
       case pigeonhole[value = base + x] do
-        nil -> acc
-        rep -> acc ++ (1..rep |> Enum.map(fn _ -> value end))
+        nil ->
+          acc
+
+        rep ->
+          acc ++
+            (Stream.iterate(value, &Function.identity/1)
+             |> Enum.take(rep))
       end
     end)
   end

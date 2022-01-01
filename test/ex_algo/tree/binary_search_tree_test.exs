@@ -3,7 +3,6 @@ defmodule ExAlgo.Tree.BinarySearchTreeTest do
   use ExUnitProperties
   @moduletag :bst
 
-
   alias ExAlgo.Tree.BinarySearchTree, as: BST
   alias ExAlgo.Tree.Traversal
 

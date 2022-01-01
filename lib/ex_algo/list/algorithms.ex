@@ -30,5 +30,5 @@ defmodule ExAlgo.List.Algorithms do
   end
 
   defp maximum(a, nil), do: a
-  defp maximum(a, b), do: a < b && b || a
+  defp maximum(a, b), do: (a < b && b) || a
 end
