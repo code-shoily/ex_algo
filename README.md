@@ -56,7 +56,8 @@ TODO - Add ex_doc pages with detailed explanations of each categories.
 ## Stack
 | Name | Implementation | Test | Benchmark | Link | Note |
 | :--: | :------------: | :--: | :-------: | :--: | :--: |
-| Stack | [queue.ex](lib/ex_algo/stack/stack.ex) | [Yes](test/ex_algo/stack/stack_test.exs) | No | | |
+| Stack | [stack.ex](lib/ex_algo/stack/stack.ex) | [Yes](test/ex_algo/stack/stack_test.exs) | No | | |
+| Min-Max Stack | [min_max_stack.ex](lib/ex_algo/stack/min_max_stack.ex) | [Yes](test/ex_algo/stack/min_max_stack_test.exs) | No | | |
 
 ## String
 | Name | Implementation | Test | Benchmark | Link | Note |
