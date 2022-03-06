@@ -18,7 +18,7 @@ defmodule ExAlgo.Stack.MinMaxStackTest do
 
   describe "current" do
     property "current value returns the last element" do
-      check all list <- nonempty list_of(integer()) do
+      check all list <- nonempty(list_of(integer())) do
         stack = MinMaxStack.from(list)
         assert MinMaxStack.current(stack) == List.last(list)
       end
@@ -27,7 +27,7 @@ defmodule ExAlgo.Stack.MinMaxStackTest do
 
   describe "minimum" do
     property "minimum always returns the smallest value" do
-      check all list <- nonempty list_of(integer()) do
+      check all list <- nonempty(list_of(integer())) do
         stack = MinMaxStack.from(list)
         assert MinMaxStack.minimum(stack) == Enum.min(list)
       end
@@ -36,7 +36,7 @@ defmodule ExAlgo.Stack.MinMaxStackTest do
 
   describe "maximum" do
     property "maximum always returns the biggest value" do
-      check all list <- nonempty list_of(integer()) do
+      check all list <- nonempty(list_of(integer())) do
         stack = MinMaxStack.from(list)
         assert MinMaxStack.maximum(stack) == Enum.max(list)
       end

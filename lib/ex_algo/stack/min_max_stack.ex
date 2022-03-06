@@ -192,6 +192,7 @@ defmodule ExAlgo.Stack.MinMaxStack do
   """
   @spec pop(t()) :: {item(), t()} | nil
   def pop(%__MODULE__{container: []}), do: nil
+
   def pop(%__MODULE__{container: [%{current: val} | rest]}),
     do: {val, %__MODULE__{container: rest}}
 
@@ -228,11 +229,15 @@ defmodule ExAlgo.Stack.MinMaxStack do
   """
   @spec pop_minimum(t()) :: {item(), history(), t()} | nil
   def pop_minimum(%__MODULE__{container: []}), do: nil
+
   def pop_minimum(stack) do
     do_pop_minimum(stack, [])
   end
 
-  defp do_pop_minimum(%__MODULE__{container: [%{current: minimum, minimum: minimum} | rest]}, history) do
+  defp do_pop_minimum(
+         %__MODULE__{container: [%{current: minimum, minimum: minimum} | rest]},
+         history
+       ) do
     {minimum, [minimum | history], %__MODULE__{container: rest}}
   end
 
@@ -273,11 +278,15 @@ defmodule ExAlgo.Stack.MinMaxStack do
   """
   @spec pop_maximum(t()) :: {item(), history(), t()} | nil
   def pop_maximum(%__MODULE__{container: []}), do: nil
+
   def pop_maximum(stack) do
     do_pop_maximum(stack, [])
   end
 
-  defp do_pop_maximum(%__MODULE__{container: [%{current: maximum, maximum: maximum} | rest]}, history) do
+  defp do_pop_maximum(
+         %__MODULE__{container: [%{current: maximum, maximum: maximum} | rest]},
+         history
+       ) do
     {maximum, [maximum | history], %__MODULE__{container: rest}}
   end
 
