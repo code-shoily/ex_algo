@@ -77,3 +77,4 @@ TODO - Add ex_doc pages with detailed explanations of each categories.
 | Name | Implementation | Test | Benchmark | Link | Note |
 | :--: | :------------: | :--: | :-------: | :--: | :--: |
 | Chinese Remainder Theorem | [chinese_remainder.ex](lib/ex_algo/number/chinese_remainder.ex) | [Yes](test/ex_algo/number/chinese_remainder_test.exs) | No | | |
+| Catalan Numbers (Recursive) | [catalan.ex::recursive](lib/ex_algo/number/catalan.ex) | [Yes](test/ex_algo/number/catalan_test.exs) | No | | |
