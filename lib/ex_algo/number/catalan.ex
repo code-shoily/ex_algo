@@ -21,12 +21,75 @@ defmodule ExAlgo.Number.Catalan do
       [1, 1, 2, 5, 14, 42, 132, 429, 1430, 4862, 16796]
 
   """
+  @spec recursive(non_neg_integer()) :: non_neg_integer()
   def recursive(n) when n <= 1, do: 1
-  def recursive(n), do: do_recursion(n, 0, 0)
+  def recursive(n) when n > 1, do: do_recursion(n, 0, 0)
 
   defp do_recursion(n, n, catalan), do: catalan
+
   defp do_recursion(n, iter, catalan) do
     do_recursion(
-      n, iter + 1, catalan + recursive(iter) * recursive(n - iter - 1))
+      n,
+      iter + 1,
+      catalan + recursive(iter) * recursive(n - iter - 1)
+    )
+  end
+
+  @doc """
+  DP based implementation of catalan numbers.
+
+  ## Example
+
+      iex> 0..10 |> Enum.map(&Catalan.dp/1)
+      [1, 1, 2, 5, 14, 42, 132, 429, 1430, 4862, 16796]
+
+      iex> Catalan.dp(100)
+      896_519_947_090_131_496_687_170_070_074_100_632_420_837_521_538_745_909_320
+
+  """
+  @spec dp(non_neg_integer()) :: non_neg_integer()
+  def dp(n), do: n |> as_map() |> Map.get(n)
+
+  @doc """
+  Dynamic programming implementation of catalan numbers that returns a list of
+  catalan numbers until `n`.
+
+  ## Example
+
+      iex> Catalan.as_map(10)
+      %{
+        0 => 1,
+        1 => 1,
+        2 => 2,
+        3 => 5,
+        4 => 14,
+        5 => 42,
+        6 => 132,
+        7 => 429,
+        8 => 1430,
+        9 => 4862,
+        10 => 16796
+      }
+
+  """
+  @spec as_map(non_neg_integer()) :: map()
+  def as_map(n) when n <= 1, do: %{n => 1}
+
+  def as_map(n) when n > 1 do
+    2..n
+    |> Enum.flat_map(fn i ->
+      for j <- 0..(i - 1) do
+        {i, j}
+      end
+    end)
+    |> Enum.reduce(init_catalans(n), fn {i, j}, acc ->
+      %{acc | i => acc[i] + acc[j] * acc[i - j - 1]}
+    end)
+  end
+
+  defp init_catalans(limit) do
+    0..limit
+    |> Enum.map(fn value -> {value, (value > 1 && 0) || 1} end)
+    |> Map.new()
   end
 end
