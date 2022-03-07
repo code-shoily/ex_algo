@@ -8,6 +8,10 @@ defmodule ExAlgo.Number.Catalan do
   Here we present multiple ways to get Catalan numbers.
 
   The first few Catalan numbers are: 1, 1, 2, 5, 14, 42, 132, 429, 1430, 4862
+
+  To see a list of Catalan numbers to aid in testing, visit:
+
+  https://www.mymathtables.com/numbers/first-hundred-catalan-number-table.html
   """
 
   @doc """
