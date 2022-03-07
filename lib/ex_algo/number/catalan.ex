@@ -17,21 +17,21 @@ defmodule ExAlgo.Number.Catalan do
 
   ## Example
 
-      iex> 0..10 |> Enum.map(&Catalan.recursive/1)
+      iex> 0..10 |> Enum.map(&Catalan.nth_recur/1)
       [1, 1, 2, 5, 14, 42, 132, 429, 1430, 4862, 16796]
 
   """
-  @spec recursive(non_neg_integer()) :: non_neg_integer()
-  def recursive(n) when n <= 1, do: 1
-  def recursive(n) when n > 1, do: do_recursion(n, 0, 0)
+  @spec nth_recur(non_neg_integer()) :: non_neg_integer()
+  def nth_recur(n) when n <= 1, do: 1
+  def nth_recur(n) when n > 1, do: do_recur(n, 0, 0)
 
-  defp do_recursion(n, n, catalan), do: catalan
+  defp do_recur(n, n, catalan), do: catalan
 
-  defp do_recursion(n, iter, catalan) do
-    do_recursion(
+  defp do_recur(n, iter, catalan) do
+    do_recur(
       n,
       iter + 1,
-      catalan + recursive(iter) * recursive(n - iter - 1)
+      catalan + nth_recur(iter) * nth_recur(n - iter - 1)
     )
   end
 
@@ -40,15 +40,15 @@ defmodule ExAlgo.Number.Catalan do
 
   ## Example
 
-      iex> 0..10 |> Enum.map(&Catalan.dp/1)
+      iex> 0..10 |> Enum.map(&Catalan.nth_dp/1)
       [1, 1, 2, 5, 14, 42, 132, 429, 1430, 4862, 16796]
 
-      iex> Catalan.dp(100)
+      iex> Catalan.nth_dp(100)
       896_519_947_090_131_496_687_170_070_074_100_632_420_837_521_538_745_909_320
 
   """
-  @spec dp(non_neg_integer()) :: non_neg_integer()
-  def dp(n), do: n |> as_map() |> Map.get(n)
+  @spec nth_dp(non_neg_integer()) :: non_neg_integer()
+  def nth_dp(n), do: n |> as_map() |> Map.get(n)
 
   @doc """
   Dynamic programming implementation of catalan numbers that returns a list of
@@ -77,11 +77,7 @@ defmodule ExAlgo.Number.Catalan do
 
   def as_map(n) when n > 1 do
     2..n
-    |> Enum.flat_map(fn i ->
-      for j <- 0..(i - 1) do
-        {i, j}
-      end
-    end)
+    |> Enum.flat_map(fn i -> Enum.map(0..(i - 1), &{i, &1}) end)
     |> Enum.reduce(init_catalans(n), fn {i, j}, acc ->
       %{acc | i => acc[i] + acc[j] * acc[i - j - 1]}
     end)
