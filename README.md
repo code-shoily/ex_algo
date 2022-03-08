@@ -43,6 +43,11 @@ TODO - Add ex_doc pages with detailed explanations of each categories.
 | Name | Implementation | Test | Benchmark | Link | Note |
 | :--: | :------------: | :--: | :-------: | :--: | :--: |
 
+## Set
+| Name | Implementation | Test | Benchmark | Link | Note |
+| :--: | :------------: | :--: | :-------: | :--: | :--: |
+| Disjoint Set | [disjoint_set.ex](lib/ex_algo/set/disjoint_set.ex) | [Yes](test/ex_algo/set/disjoint_set_test.exs) | No | | |
+
 ## Sort
 | Name | Implementation | Test | Benchmark | Link | Note |
 | :--: | :------------: | :--: | :-------: | :--: | :--: |
