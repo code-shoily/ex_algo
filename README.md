@@ -42,6 +42,7 @@ TODO - Add ex_doc pages with detailed explanations of each categories.
 ## Search
 | Name | Implementation | Test | Benchmark | Link | Note |
 | :--: | :------------: | :--: | :-------: | :--: | :--: |
+| Binary Search | [binary_search.ex](lib/ex_algo/search/binary_search.ex) | [Yes](test/ex_algo/search/binary_search_test.exs) | No | | |
 
 ## Set
 | Name | Implementation | Test | Benchmark | Link | Note |
