@@ -9,19 +9,23 @@ The sole purpose of this is to use as a learning tool for algorithms in a functi
 Download this repo and get the dependencies with `mix deps.get`. Go to `iex -S mix` to try out the algorithms in the REPL. `mix test` runs all the tests.
 
 ## Detailed Documentation
+
 TODO - Add ex_doc pages with detailed explanations of each categories.
 
 ## Catalogue
 
-## Graph
+### Graph
+
 | Name | Implementation | Test | Benchmark | Link | Note |
 | :--: | :------------: | :--: | :-------: | :--: | :--: |
 
-## Heap
+### Heap
+
 | Name | Implementation | Test | Benchmark | Link | Note |
 | :--: | :------------: | :--: | :-------: | :--: | :--: |
 
-## List
+### List
+
 | Name | Implementation | Test | Benchmark | Link | Note |
 | :--: | :------------: | :--: | :-------: | :--: | :--: |
 | Linked List | [linked_list.ex](lib/ex_algo/list/linked_list.ex) | [Yes](test/ex_algo/list/linked_list_test.exs) | No | | |
@@ -29,27 +33,31 @@ TODO - Add ex_doc pages with detailed explanations of each categories.
 | BidirectionalList | [bidirectional_list.ex](lib/ex_algo/list/bidirectional_list.ex) | [Yes](test/ex_algo/list/bidirectional_list_test.exs) | No | | WIP |
 | Maximum Subarray Sum | [algorithms.ex](lib/ex_algo/list/algorithms.ex) | [Yes](test/ex_algo/list/algorithms_test.exs) | No | | Kadane's Algorithm |
 
+### Functional/Immutable
 
-## Functional/Immutable
 | Name | Implementation | Test | Benchmark | Link | Note |
 | :--: | :------------: | :--: | :-------: | :--: | :--: |
 
-## Queue
+### Queue
+
 | Name | Implementation | Test | Benchmark | Link | Note |
 | :--: | :------------: | :--: | :-------: | :--: | :--: |
 | Queue | [queue.ex](lib/ex_algo/queue/queue.ex) | [Yes](test/ex_algo/queue/queue_test.exs) | No | | |
 
-## Search
+### Search
+
 | Name | Implementation | Test | Benchmark | Link | Note |
 | :--: | :------------: | :--: | :-------: | :--: | :--: |
 | Binary Search | [binary_search.ex](lib/ex_algo/search/binary_search.ex) | [Yes](test/ex_algo/search/binary_search_test.exs) | No | | |
 
-## Set
+### Set
+
 | Name | Implementation | Test | Benchmark | Link | Note |
 | :--: | :------------: | :--: | :-------: | :--: | :--: |
 | Disjoint Set | [disjoint_set.ex](lib/ex_algo/set/disjoint_set.ex) | [Yes](test/ex_algo/set/disjoint_set_test.exs) | No | | |
 
-## Sort
+### Sort
+
 | Name | Implementation | Test | Benchmark | Link | Note |
 | :--: | :------------: | :--: | :-------: | :--: | :--: |
 | Bubble Sort | [exchange.ex](lib/ex_algo/sort/exchange.ex) | [Yes](test/ex_algo/sort/exchange_test.exs) | No | | |
@@ -59,29 +67,42 @@ TODO - Add ex_doc pages with detailed explanations of each categories.
 | Quick Sort | [exchange.ex](lib/ex_algo/sort/exchange.ex) | [Yes](test/ex_algo/sort/exchange_test.exs) | No | | |
 | Selection Sort | [selection.ex](lib/ex_algo/sort/selection.ex) | [Yes](test/ex_algo/sort/selection_test.exs) | No | | |
 
-## Stack
+### Stack
+
 | Name | Implementation | Test | Benchmark | Link | Note |
 | :--: | :------------: | :--: | :-------: | :--: | :--: |
 | Stack | [stack.ex](lib/ex_algo/stack/stack.ex) | [Yes](test/ex_algo/stack/stack_test.exs) | No | | |
 | Min-Max Stack | [min_max_stack.ex](lib/ex_algo/stack/min_max_stack.ex) | [Yes](test/ex_algo/stack/min_max_stack_test.exs) | No | | |
 
-## String
+### String
+
 | Name | Implementation | Test | Benchmark | Link | Note |
 | :--: | :------------: | :--: | :-------: | :--: | :--: |
 
-## Tree
+### Tree
+
 | Name | Implementation | Test | Benchmark | Link | Note |
 | :--: | :------------: | :--: | :-------: | :--: | :--: |
 | Binary Search Tree | [binary_search_tree.ex](lib/ex_algo/tree/binary_search_tree.ex) | [Yes](test/ex_algo/tree/binary_search_tree_test.exs) | No | |
 | Tree Traversals | [traversal.ex](lib/ex_algo/tree/traversal.ex) | [Yes](test/ex_algo/tree/traversal_test.exs) | No | | |
 
-## Trie
+### Trie
+
+| Name | Implementation | Test | Benchmark | Link | Note |
+| :--: | :------------: | :--: | :-------: | :--: | :--: |
+| Permutations | [combinatorics.ex::permutations](lib/ex_algo/counting/combinatorics.ex) | [Yes](test/ex_algo/counting/combinatorics_test.exs) | No | | Naive|
+| Combinations | [combinatorics.ex::combinations](lib/ex_algo/counting/combinatorics.ex) | [Yes](test/ex_algo/counting/combinatorics_test.exs) | No | | Naive|
+
+### Counting
+
 | Name | Implementation | Test | Benchmark | Link | Note |
 | :--: | :------------: | :--: | :-------: | :--: | :--: |
 
-## Numbers
+### Numbers
+
 | Name | Implementation | Test | Benchmark | Link | Note |
 | :--: | :------------: | :--: | :-------: | :--: | :--: |
 | Chinese Remainder Theorem | [chinese_remainder.ex](lib/ex_algo/number/chinese_remainder.ex) | [Yes](test/ex_algo/number/chinese_remainder_test.exs) | No | | |
 | Catalan Numbers (Recursive) | [catalan.ex::recursive](lib/ex_algo/number/catalan.ex) | [Yes](test/ex_algo/number/catalan_test.exs) | No | | |
 | Catalan Numbers (Dynamic) | [catalan.ex::dp](lib/ex_algo/number/catalan.ex) | [Yes](test/ex_algo/number/catalan_test.exs) | No | | |
+| Divisors | [arithmetics.ex::divisors](lib/ex_algo/number/arithmetics.ex) | [Yes](test/ex_algo/number/arithmetics_test.exs) | No | | |
