@@ -28,10 +28,10 @@ defmodule ExAlgo.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:benchee, "~> 1.0", only: :dev},
+      {:benchee, "~> 1.1", only: :dev},
       {:credo, "~> 1.6", only: [:dev, :test], runtime: false},
-      {:excoveralls, "~> 0.10", only: :test},
-      {:ex_doc, "~> 0.24", only: :dev, runtime: false},
+      {:excoveralls, "~> 0.15", only: :test},
+      {:ex_doc, "~> 0.29", only: :dev, runtime: false},
       {:stream_data, "~> 0.5", only: [:dev, :test]}
     ]
   end
