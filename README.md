@@ -86,17 +86,18 @@ TODO - Add ex_doc pages with detailed explanations of each categories.
 | Binary Search Tree | [binary_search_tree.ex](lib/ex_algo/tree/binary_search_tree.ex) | [Yes](test/ex_algo/tree/binary_search_tree_test.exs) | No | |
 | Tree Traversals | [traversal.ex](lib/ex_algo/tree/traversal.ex) | [Yes](test/ex_algo/tree/traversal_test.exs) | No | | |
 
-### Trie
+### Counting
 
 | Name | Implementation | Test | Benchmark | Link | Note |
 | :--: | :------------: | :--: | :-------: | :--: | :--: |
 | Permutations | [combinatorics.ex::permutations](lib/ex_algo/counting/combinatorics.ex) | [Yes](test/ex_algo/counting/combinatorics_test.exs) | No | | Naive|
 | Combinations | [combinatorics.ex::combinations](lib/ex_algo/counting/combinatorics.ex) | [Yes](test/ex_algo/counting/combinatorics_test.exs) | No | | Naive|
 
-### Counting
+### Trie
 
 | Name | Implementation | Test | Benchmark | Link | Note |
 | :--: | :------------: | :--: | :-------: | :--: | :--: |
+
 
 ### Dynamic Programming
 
