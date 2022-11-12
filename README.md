@@ -103,7 +103,7 @@ TODO - Add ex_doc pages with detailed explanations of each categories.
 
 | Name | Implementation | Test | Benchmark | Link | Note |
 | :--: | :------------: | :--: | :-------: | :--: | :--: |
-| Subset Sum | [subset_sum.ex](lib/ex_algo/dynamic_programming/subset_sum.ex) | [Yes](test/ex_algo/dynamic_programming/subset_sum_test.exs) | No | | |
+| Subset Sum | [subset_sum.ex](lib/ex_algo/dynamic_programming/subset_sum.ex) | [Yes](test/ex_algo/dynamic_programming/subset_sum_test.exs) | No | | FIXME: Not all subsets are listed. Need to work on that. |
 
 ### Numbers
 
