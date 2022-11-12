@@ -36,8 +36,10 @@ defmodule ExAlgo.Search.BinarySearch do
   def search(haystack, needle), do: do_search(haystack, needle, 0, length(haystack))
 
   def do_search(_, _, start, stop) when start > stop, do: nil
+
   def do_search(haystack, needle, start, stop) do
     mid = (start + stop) |> div(2)
+
     case haystack |> Enum.at(mid) do
       ^needle -> mid
       value when value > needle -> haystack |> do_search(needle, start, mid - 1)

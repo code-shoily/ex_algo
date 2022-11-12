@@ -5,5 +5,4 @@ defmodule ExAlgo.DynamicProgramming.SubsetSumTest do
   alias ExAlgo.DynamicProgramming.SubsetSum
 
   doctest ExAlgo.DynamicProgramming.SubsetSum
-
 end

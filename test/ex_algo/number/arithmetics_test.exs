@@ -5,5 +5,4 @@ defmodule ExAlgo.Number.ArithmeticsTest do
   alias ExAlgo.Number.Arithmetics
 
   doctest ExAlgo.Number.Arithmetics
-
 end
