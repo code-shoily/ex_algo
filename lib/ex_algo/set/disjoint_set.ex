@@ -45,6 +45,7 @@ defmodule ExAlgo.Set.DisjointSet do
   not exist.
 
   ## Example
+
       iex> set = DisjointSet.new(4)
       iex> Enum.reduce(0..3, true, fn x, acc ->
       ...>   {value, _} = DisjointSet.find(set, x)
@@ -102,22 +103,22 @@ defmodule ExAlgo.Set.DisjointSet do
 
   ## Example
 
-    iex> set = DisjointSet.new(5)
-    iex> set =
-    ...>   set
-    ...>   |> DisjointSet.union(0, 2)
-    ...>   |> DisjointSet.union(4, 2)
-    ...>   |> DisjointSet.union(3, 1)
-    iex> set
-    %DisjointSet{
-      parents: %{0 => 0, 1 => 3, 2 => 0, 3 => 3, 4 => 0},
-      ranks: %{0 => 2, 1 => 1, 2 => 1, 3 => 2, 4 => 1}
-    }
-    iex> DisjointSet.union(set, 3, 1) == set
-    true
+      iex> set = DisjointSet.new(5)
+      iex> set =
+      ...>   set
+      ...>   |> DisjointSet.union(0, 2)
+      ...>   |> DisjointSet.union(4, 2)
+      ...>   |> DisjointSet.union(3, 1)
+      iex> set
+      %DisjointSet{
+        parents: %{0 => 0, 1 => 3, 2 => 0, 3 => 3, 4 => 0},
+        ranks: %{0 => 2, 1 => 1, 2 => 1, 3 => 2, 4 => 1}
+      }
+      iex> DisjointSet.union(set, 3, 1) == set
+      true
 
-    iex> DisjointSet.new(1) |> DisjointSet.union(100, 200)
-    :error
+      iex> DisjointSet.new(1) |> DisjointSet.union(100, 200)
+      :error
 
   """
   @spec union(t(), value(), value()) :: t() | :error
