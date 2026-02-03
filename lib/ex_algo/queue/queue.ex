@@ -103,7 +103,7 @@ defmodule ExAlgo.Queue do
       [-1, 4, 3, 2, 10]
 
   """
-  @spec to_list(t()) :: List.t()
+  @spec to_list(t()) :: list()
   def to_list(%__MODULE__{left: left, right: []}), do: left
   def to_list(%__MODULE__{left: [], right: right}), do: Enum.reverse(right)
   def to_list(%__MODULE__{left: left, right: right}), do: left ++ Enum.reverse(right)
