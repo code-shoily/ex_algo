@@ -1,23 +1,39 @@
 defmodule ExAlgo.DynamicProgramming.SubsetSum do
   @moduledoc """
-  Provides functions related to subsets that sum to given target.
+  Provides functions for the subset sum problem using dynamic programming.
 
-  FIXME: Currently this algorithm assumes all numbers are positive
+  ## Limitation
+
+  This implementation is optimized for non-negative integers only. The algorithm
+  uses a DP table indexed by sum values, which assumes non-negative sums.
+
+  For arrays containing negative numbers, a different approach is needed that
+  handles negative intermediate sums. Consider implementing a separate module
+  (e.g., `SubsetSumGeneral`) if negative number support is required.
+
+  ## Algorithm
+
+  Uses dynamic programming with a 2D cache where `cache[{i, j}]` represents
+  whether a subset of the first `i+1` elements can sum to `j`.
+
+  Time complexity: O(n * target) where n is the number of elements
+  Space complexity: O(n * target)
   """
 
   @type nums :: [non_neg_integer()]
   @type cache :: %{required({non_neg_integer(), non_neg_integer()}) => boolean()}
 
   @doc """
-  Initializes the cache. All cells are `false` except `{0, x}` where `nums[0] == x`
+  Initializes the cache. Column 0 (target=0) is always `true` (empty subset),
+  and `{0, x}` is `true` where `nums[0] == x`
 
   ## Example
 
     iex> SubsetSum.init_cache([1, 2, 3], 3)
     %{
-      {0, 0} => false, {0, 1} => true, {0, 2} => false, {0, 3} => false,
-      {1, 0} => false, {1, 1} => false, {1, 2} => false, {1, 3} => false,
-      {2, 0} => false, {2, 1} => false, {2, 2} => false, {2, 3} => false,
+      {0, 0} => true, {0, 1} => true, {0, 2} => false, {0, 3} => false,
+      {1, 0} => true, {1, 1} => false, {1, 2} => false, {1, 3} => false,
+      {2, 0} => true, {2, 1} => false, {2, 2} => false, {2, 3} => false,
     }
 
   """
@@ -28,23 +44,23 @@ defmodule ExAlgo.DynamicProgramming.SubsetSum do
         Map.put(
           cells,
           {row, col},
-          row == 0 && head == col
+          col == 0 || (row == 0 && head == col)
         )
       end)
     end)
   end
 
   @doc """
-  Builds cache where each {x, y} value depicts a subset exists from `1..x` of sorted
+  Builds cache where each {x, y} value depicts a subset exists from `0..x` of sorted
   `nums` where the sum of that subset is `y`.
 
   ## Example
 
     iex> SubsetSum.build_cache([1, 2, 3], 3)
     %{
-      {0, 0} => false, {0, 1} => true, {0, 2} => false, {0, 3} => false, # [1] has subset that sums to 1
-      {1, 0} => false, {1, 1} => true, {1, 2} => true, {1, 3} => true, # [1, 2] has subsets that sums to 1, 2, 3
-      {2, 0} => false, {2, 1} => true, {2, 2} => true, {2, 3} => true, # [1, 2, 3] has subsets that sums to 1, 2, 3
+      {0, 0} => true, {0, 1} => true, {0, 2} => false, {0, 3} => false, # [] or [1] can make 0 or 1
+      {1, 0} => true, {1, 1} => true, {1, 2} => true, {1, 3} => true, # [1, 2] can make 0, 1, 2, 3
+      {2, 0} => true, {2, 1} => true, {2, 2} => true, {2, 3} => true, # [1, 2, 3] can make 0, 1, 2, 3
     }
 
   """
@@ -109,7 +125,9 @@ defmodule ExAlgo.DynamicProgramming.SubsetSum do
 
   """
   @spec has_subset_sum(nums(), non_neg_integer()) :: boolean()
+  def has_subset_sum([], 0), do: true
   def has_subset_sum([], _), do: false
+  def has_subset_sum(_, 0), do: true
   def has_subset_sum(_, target) when target < 0, do: false
 
   def has_subset_sum(nums, target) do
@@ -121,10 +139,16 @@ defmodule ExAlgo.DynamicProgramming.SubsetSum do
   end
 
   @doc """
-  Returns a list of subset that make target sum.
+  Returns a list of subsets that sum to the target.
 
-  FIXME: This solution has issues, while it somehow solves the Advent of Code problem it intended to solve, but
-  it does not get all enumerations of subsets.
+  ## Limitation
+
+  This implementation may not find all possible subsets that sum to the target.
+  It was designed to solve a specific problem and may return only a subset of
+  valid solutions.
+
+  For a complete enumeration of all valid subsets, a different backtracking
+  approach would be needed.
   """
   def find_subsets(nums, target) do
     cache = build_cache(nums, target)
