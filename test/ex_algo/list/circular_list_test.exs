@@ -70,8 +70,7 @@ defmodule ExAlgo.List.CircularListTest do
 
   property "when indexing for number, it will be the remainder between that number and length" do
     check all list <- nonempty(list_of(integer())),
-              index <- integer(),
-              index >= 0 do
+              index <- integer(0..10_000) do
       circular_list = CircularList.from(list)
       assert CircularList.at(circular_list, index) == Enum.at(list, rem(index, length(list)))
     end
