@@ -39,15 +39,13 @@ defmodule ExAlgo.DynamicProgramming.SubsetSum do
   """
   @spec init_cache(nums(), non_neg_integer()) :: cache()
   def init_cache([head | _] = lst, target) do
-    Enum.reduce(0..(length(lst) - 1), %{}, fn row, acc ->
-      Enum.reduce(0..target//1, acc, fn col, cells ->
-        Map.put(
-          cells,
-          {row, col},
-          col == 0 || (row == 0 && head == col)
-        )
-      end)
-    end)
+    num_rows = length(lst)
+
+    for row <- 0..(num_rows - 1),
+        col <- 0..target//1,
+        into: %{} do
+      {{row, col}, col == 0 || (row == 0 && head == col)}
+    end
   end
 
   @doc """
@@ -76,29 +74,23 @@ defmodule ExAlgo.DynamicProgramming.SubsetSum do
 
     Enum.reduce(1..count//1, cache, fn row, cache ->
       num = Enum.at(nums, row)
-
-      0..target//1
-      |> Enum.reduce(cache, fn col, cache ->
-        remaining = col - num
-
-        cache =
-          Map.merge(
-            cache,
-            %{{row, col} => cache[{row - 1, col}] || num == col}
-          )
-
-        case {cache[{row, col}], 0 <= remaining, remaining < target} do
-          {false, true, true} ->
-            Map.merge(
-              cache,
-              %{{row, col} => cache[{row - 1, remaining}]}
-            )
-
-          _ ->
-            cache
-        end
-      end)
+      Enum.reduce(0..target//1, cache, &update_cache_cell(&1, &2, row, num))
     end)
+  end
+
+  defp update_cache_cell(col, cache, row, num) do
+    cache = Map.put(cache, {row, col}, cache[{row - 1, col}] || num == col)
+    maybe_update_from_remaining(cache, row, col, num)
+  end
+
+  defp maybe_update_from_remaining(cache, row, col, num) do
+    remaining = col - num
+
+    if !cache[{row, col}] && remaining >= 0 && remaining < col do
+      Map.put(cache, {row, col}, cache[{row - 1, remaining}])
+    else
+      cache
+    end
   end
 
   @doc """
