@@ -31,7 +31,17 @@ defmodule ExAlgo.Sort.Exchange do
   defp bubble([a | rest], rev?, acc), do: rest |> bubble(rev?, [a | acc])
 
   @doc """
-  Perform sort by using the merge_sort algorithm.
+  Perform sort by using the quick_sort algorithm.
+
+  ## Performance Note
+
+  This implementation always chooses the first element as the pivot, which
+  results in **O(n²) worst-case performance on already-sorted lists** (a
+  common real-world case).
+
+  For better average-case performance, consider using a random pivot or
+  median-of-three pivot selection. However, for production use, `Enum.sort/1`
+  or `Merge.merge_sort/1` provide more consistent O(n log n) performance.
 
   ## Example
 

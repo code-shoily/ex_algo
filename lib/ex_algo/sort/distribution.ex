@@ -1,12 +1,40 @@
 defmodule ExAlgo.Sort.Distribution do
   @moduledoc """
-  Distribution Sort
+  Distribution Sort (Pigeonhole Sort)
+
+  ## Performance Warning
+
+  This implementation has **O(n × range) time complexity** instead of the
+  expected O(n + range) due to using the list concatenation operator (`++`)
+  which rebuilds the left-hand list on each append.
+
+  Pigeonhole sort is designed for imperative languages with arrays where
+  elements can be placed directly at computed indices in O(1) time. In an
+  immutable functional language like Elixir, building the result list with
+  `++` causes quadratic behavior in the range size.
+
+  **This algorithm becomes extremely slow when the range is large** (e.g.,
+  sorting [1, 10000] is 1000× slower than [1, 10]).
+
+  **For production use, prefer `Merge.merge_sort/1` or `Enum.sort/1` instead.**
+
+  This implementation is provided for educational purposes to demonstrate
+  algorithms that don't translate well to functional programming.
   """
   @type item :: any()
   @type t :: [item()]
 
   @doc """
   Perform sort by using the pigeonhole_sort algorithm.
+
+  ## Performance Warning
+
+  This implementation is **O(n × range)** where range = max - min. The `++`
+  operator (line 46) rebuilds the accumulator list each time, making this
+  extremely inefficient when the range is large.
+
+  **Not recommended for production use**, especially with large ranges.
+  Use `Enum.sort/1` or `Merge.merge_sort/1` instead.
 
   ## Example
 
