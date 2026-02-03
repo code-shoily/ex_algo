@@ -2,11 +2,13 @@ defmodule ExAlgo.Search.BinarySearch do
   @moduledoc """
   Implements a binary tree.
 
-  Note: This is not an O(lg n) algorithm since it is based on List and random
-  access on linked lists are of O(n). In a future iteration, it will be replaced
-  with :array which also is not O(1) random access.
+  ## Note on Complexity
+    Standard Elixir Lists are linked lists, making random access an $O(N)$ operation.
+    To achieve true $O(\\log N)$ search performance, this implementation converts the
+    list to a **Tuple** first ($O(N)$).
 
-  TODO Implement Array version.
+    Once converted, `elem(tuple, index)` provides $O(1)$ access, allowing the
+    divide-and-conquer logic to run in $O(\\log N)$ time.
   """
   @type value() :: any()
   @type search_result :: value() | nil
@@ -32,18 +34,26 @@ defmodule ExAlgo.Search.BinarySearch do
       nil
 
   """
-  @spec search(list[value()], value()) :: search_result()
-  def search(haystack, needle), do: do_search(haystack, needle, 0, length(haystack))
+  @spec search(list(), any()) :: integer() | nil
+  def search([], _), do: nil
 
-  def do_search(_, _, start, stop) when start > stop, do: nil
+  def search(list, needle) do
+    # Convert to tuple once: O(n)
+    haystack = List.to_tuple(list)
+    do_search(haystack, needle, 0, tuple_size(haystack) - 1)
+  end
 
-  def do_search(haystack, needle, start, stop) do
-    mid = (start + stop) |> div(2)
+  defp do_search(_haystack, _needle, start, stop) when start > stop, do: nil
 
-    case haystack |> Enum.at(mid) do
-      ^needle -> mid
-      value when value > needle -> haystack |> do_search(needle, start, mid - 1)
-      value when value < needle -> haystack |> do_search(needle, mid + 1, stop)
+  defp do_search(haystack, needle, start, stop) do
+    mid = div(start + stop, 2)
+    # O(1) access!
+    val = elem(haystack, mid)
+
+    cond do
+      val == needle -> mid
+      val > needle -> do_search(haystack, needle, start, mid - 1)
+      val < needle -> do_search(haystack, needle, mid + 1, stop)
     end
   end
 end
