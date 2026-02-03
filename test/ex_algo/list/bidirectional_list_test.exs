@@ -31,7 +31,7 @@ defmodule ExAlgo.List.BidirectionalListTest do
   describe "collectable" do
     test "convert a List into BidirectionalList" do
       list = for i <- 1..10, into: %BidirectionalList{}, do: i
-      assert list.upcoming == 10..1 |> Enum.to_list()
+      assert list.upcoming == 10..1//-1 |> Enum.to_list()
     end
   end
 end

@@ -7,7 +7,7 @@ defmodule ExAlgo.List.LinkedListTest do
 
   doctest ExAlgo.List.LinkedList
 
-  setup_all do
+  setup do
     {:ok,
      %{
        empty_list: LinkedList.new(),
@@ -101,7 +101,7 @@ defmodule ExAlgo.List.LinkedListTest do
   describe "collectable" do
     test "convert a List into LinkedList" do
       list = for i <- 1..10, into: %LinkedList{}, do: i
-      assert list.container == 10..1 |> Enum.to_list()
+      assert list.container == 10..1//-1 |> Enum.to_list()
     end
   end
 

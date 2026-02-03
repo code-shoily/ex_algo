@@ -31,7 +31,7 @@ defmodule ExAlgo.List.CircularListTest do
   describe "collectable" do
     test "convert a List into CircularList" do
       list = for i <- 1..10, into: %CircularList{}, do: i
-      assert list.upcoming == 10..1 |> Enum.to_list()
+      assert list.upcoming == 10..1//-1 |> Enum.to_list()
     end
   end
 
@@ -56,8 +56,7 @@ defmodule ExAlgo.List.CircularListTest do
 
   property "circular list to list will always return the list regardless of the visited or upcoming" do
     check all list <- nonempty(list_of(integer())),
-              repeat <- integer(),
-              repeat in 1..100 do
+              repeat <- integer(1..100) do
       as_list =
         1..repeat
         |> Enum.reduce(CircularList.from(list), fn _, acc ->

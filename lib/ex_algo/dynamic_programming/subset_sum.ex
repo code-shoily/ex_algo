@@ -24,7 +24,7 @@ defmodule ExAlgo.DynamicProgramming.SubsetSum do
   @spec init_cache(nums(), non_neg_integer()) :: cache()
   def init_cache([head | _] = lst, target) do
     Enum.reduce(0..(length(lst) - 1), %{}, fn row, acc ->
-      Enum.reduce(0..target, acc, fn col, cells ->
+      Enum.reduce(0..target//1, acc, fn col, cells ->
         Map.put(
           cells,
           {row, col},
@@ -58,10 +58,10 @@ defmodule ExAlgo.DynamicProgramming.SubsetSum do
   def build_cache(nums, cache, target) do
     count = length(nums) - 1
 
-    Enum.reduce(1..count, cache, fn row, cache ->
+    Enum.reduce(1..count//1, cache, fn row, cache ->
       num = Enum.at(nums, row)
 
-      0..target
+      0..target//1
       |> Enum.reduce(cache, fn col, cache ->
         remaining = col - num
 
@@ -110,6 +110,7 @@ defmodule ExAlgo.DynamicProgramming.SubsetSum do
   """
   @spec has_subset_sum(nums(), non_neg_integer()) :: boolean()
   def has_subset_sum([], _), do: false
+  def has_subset_sum(_, target) when target < 0, do: false
 
   def has_subset_sum(nums, target) do
     has_subset_sum(nums, target, build_cache(nums, target))

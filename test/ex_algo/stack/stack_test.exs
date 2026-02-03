@@ -7,7 +7,7 @@ defmodule ExAlgo.StackTest do
 
   doctest ExAlgo.Stack
 
-  setup_all do
+  setup do
     {:ok,
      %{
        empty_stack: %Stack{},
