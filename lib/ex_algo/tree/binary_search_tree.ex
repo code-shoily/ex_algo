@@ -149,4 +149,71 @@ defmodule ExAlgo.Tree.BinarySearchTree do
       _ -> find(left, key, key_fn)
     end
   end
+
+  @doc """
+  Delete an item from the tree.
+
+  ## Example
+
+      iex> tree = BST.from([10, 5, 15, 3, 7, 12, 20])
+      iex> tree = BST.delete(tree, 15)
+      iex> Traversal.inorder(tree)
+      [3, 5, 7, 10, 12, 20]
+
+      iex> tree = BST.from([10, 5, 15])
+      iex> tree = BST.delete(tree, 10)
+      iex> Traversal.inorder(tree)
+      [5, 15]
+
+      iex> tree = BST.from([10, 5, 15])
+      iex> tree = BST.delete(tree, 99)
+      iex> Traversal.inorder(tree)
+      [5, 10, 15]
+
+  """
+  @spec delete(t() | nil, key_type()) :: t() | nil
+  def delete(tree, key, key_fn \\ @identity)
+  def delete(nil, _, _), do: nil
+
+  def delete(%__MODULE__{data: data, left: left, right: right} = tree, key, key_fn) do
+    current_key = key_fn.(data)
+
+    cond do
+      current_key > key ->
+        %{tree | left: delete(left, key, key_fn)}
+
+      current_key < key ->
+        %{tree | right: delete(right, key, key_fn)}
+
+      true ->
+        case {left, right} do
+          {nil, nil} ->
+            nil
+
+          {nil, right} ->
+            right
+
+          {left, nil} ->
+            left
+
+          {_left, _right} ->
+            successor_data = find_min(right)
+            %{tree | data: successor_data, right: delete(right, key_fn.(successor_data), key_fn)}
+        end
+    end
+  end
+
+  @doc """
+  Find the minimum value in a tree (leftmost node).
+
+  ## Example
+
+      iex> tree = BST.from([10, 5, 15, 3, 7])
+      iex> BST.find_min(tree)
+      3
+
+  """
+  @spec find_min(t()) :: value_type()
+  def find_min(%__MODULE__{data: data, left: nil}), do: data
+  def find_min(%__MODULE__{left: left}), do: find_min(left)
 end
