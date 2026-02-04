@@ -35,12 +35,19 @@ defmodule ExAlgo.Sort.Merge do
     |> then(fn {left, right} ->
       {merge_sort(left), merge_sort(right)}
     end)
-    |> then(fn {left, right} -> merge(left, right) end)
+    |> then(fn {left, right} -> do_merge(left, right, []) end)
   end
 
-  @spec merge(t, t) :: t
-  defp merge([], right), do: right
-  defp merge(left, []), do: left
-  defp merge([x | xs], [y | _] = right) when x < y, do: [x | merge(xs, right)]
-  defp merge(left, [y | ys]), do: [y | merge(ys, left)]
+  defp do_merge([], right, acc), do: Enum.reverse(acc) ++ right
+  defp do_merge(left, [], acc), do: Enum.reverse(acc) ++ left
+
+  defp do_merge([x | xs], [y | _] = ys, acc) when x < y do
+    # Tail call!
+    do_merge(xs, ys, [x | acc])
+  end
+
+  defp do_merge(xs, [y | ys], acc) do
+    # Tail call!
+    do_merge(xs, ys, [y | acc])
+  end
 end
