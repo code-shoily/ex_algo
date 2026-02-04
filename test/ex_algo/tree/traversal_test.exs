@@ -1,6 +1,6 @@
 defmodule ExAlgo.Tree.TraversalTest do
-  use ExUnitProperties
   use ExUnit.Case
+  use ExUnitProperties
   @moduletag :tree_traversal
 
   alias ExAlgo.Tree.BinarySearchTree, as: BST
