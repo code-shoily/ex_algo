@@ -2,6 +2,8 @@ defmodule ExAlgo.Tree.Traversal do
   @moduledoc """
   Performs traversals on Binary Trees.
   """
+  alias ExAlgo.Queue
+
   @type item :: any()
   @type items :: [any()]
   @type tree :: %{data: item(), left: tree(), right: tree()} | nil
@@ -67,5 +69,42 @@ defmodule ExAlgo.Tree.Traversal do
     acc = [data | acc]
     acc = do_postorder(right, acc)
     do_postorder(left, acc)
+  end
+
+  @doc """
+  Traverses the tree level by level.
+
+  ## Example
+      iex> tree = BST.from([30, 20, 40, 15, 25, 35, 50])
+      iex> Traversal.levelorder(tree)
+      [30, 20, 40, 15, 25, 35, 50]
+
+  """
+  def levelorder(nil), do: []
+
+  def levelorder(tree) do
+    queue = Queue.new() |> Queue.enqueue(tree)
+    do_levelorder(queue, [])
+  end
+
+  defp do_levelorder(queue, acc) do
+    case Queue.dequeue(queue) do
+      {:error, :underflow} ->
+        Enum.reverse(acc)
+
+      {node, queue} ->
+        queue = enqueue_children(queue, node.left, node.right)
+        do_levelorder(queue, [node.data | acc])
+    end
+  end
+
+  defp enqueue_children(queue, nil, nil), do: queue
+  defp enqueue_children(queue, nil, right), do: Queue.enqueue(queue, right)
+  defp enqueue_children(queue, left, nil), do: Queue.enqueue(queue, left)
+
+  defp enqueue_children(queue, left, right) do
+    queue
+    |> Queue.enqueue(left)
+    |> Queue.enqueue(right)
   end
 end

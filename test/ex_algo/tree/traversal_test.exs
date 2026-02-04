@@ -1,4 +1,5 @@
 defmodule ExAlgo.Tree.TraversalTest do
+  use ExUnitProperties
   use ExUnit.Case
   @moduletag :tree_traversal
 
@@ -6,6 +7,15 @@ defmodule ExAlgo.Tree.TraversalTest do
   alias ExAlgo.Tree.Traversal
 
   doctest ExAlgo.Tree.Traversal
+
+  property "Round-trip: Level-order traversal can reconstruct the exact same tree" do
+    check all list <- nonempty(list_of(integer())) do
+      tree_original = BST.from(list)
+      flattened = Traversal.levelorder(tree_original)
+      tree_reconstructed = BST.from(flattened)
+      assert tree_original == tree_reconstructed
+    end
+  end
 
   describe "inorder/1" do
     test "inorder traversal for nil is empty" do
