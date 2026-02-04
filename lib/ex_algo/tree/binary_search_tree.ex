@@ -216,4 +216,28 @@ defmodule ExAlgo.Tree.BinarySearchTree do
   @spec find_min(t()) :: value_type()
   def find_min(%__MODULE__{data: data, left: nil}), do: data
   def find_min(%__MODULE__{left: left}), do: find_min(left)
+
+  @doc """
+  Prints the content of a binary tree in spaced format, in L to R.
+
+  ## Example
+
+  Given we have `BST.from [10, 5, 15, 3, 7]` we should have printed:
+
+          15
+     10
+              7
+          5
+              3
+
+  **TODO: Make this prettier and modularized.**
+  """
+  def print(tree, indent \\ "")
+  def print(nil, _), do: :ok
+
+  def print(%__MODULE__{data: data, left: left, right: right}, indent) do
+    print(right, indent <> "    ")
+    IO.puts(indent <> to_string(data))
+    print(left, indent <> "    ")
+  end
 end

@@ -4,7 +4,7 @@ defmodule ExAlgo.Tree.Traversal do
   """
   @type item :: any()
   @type items :: [any()]
-  @type tree :: %{data: item(), left: tree | nil, right: tree | nil}
+  @type tree :: %{data: item(), left: tree(), right: tree()} | nil
 
   @doc """
   Traverses a tree inorder.
