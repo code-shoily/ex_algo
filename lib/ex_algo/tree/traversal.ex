@@ -17,11 +17,15 @@ defmodule ExAlgo.Tree.Traversal do
 
   """
   @spec inorder(tree() | nil) :: items()
-  def inorder(%{data: data, left: left, right: right}) do
-    inorder(left) ++ [data] ++ inorder(right)
-  end
+  def inorder(tree), do: do_inorder(tree, [])
 
-  def inorder(nil), do: []
+  defp do_inorder(nil, acc), do: acc
+
+  defp do_inorder(%{data: data, left: left, right: right}, acc) do
+    acc = do_inorder(right, acc)
+    acc = [data | acc]
+    do_inorder(left, acc)
+  end
 
   @doc """
   Traverses a tree preorder.
@@ -34,11 +38,15 @@ defmodule ExAlgo.Tree.Traversal do
 
   """
   @spec preorder(tree()) :: items()
-  def preorder(%{data: data, left: left, right: right}) do
-    [data] ++ preorder(left) ++ preorder(right)
-  end
+  def preorder(tree), do: do_preorder(tree, [])
 
-  def preorder(nil), do: []
+  defp do_preorder(nil, acc), do: acc
+
+  defp do_preorder(%{data: data, left: left, right: right}, acc) do
+    acc = do_preorder(right, acc)
+    acc = do_preorder(left, acc)
+    [data | acc]
+  end
 
   @doc """
   Traverses a tree postorder.
@@ -51,9 +59,13 @@ defmodule ExAlgo.Tree.Traversal do
 
   """
   @spec postorder(tree()) :: items()
-  def postorder(%{data: data, left: left, right: right}) do
-    postorder(left) ++ postorder(right) ++ [data]
-  end
+  def postorder(tree), do: do_postorder(tree, [])
 
-  def postorder(nil), do: []
+  defp do_postorder(nil, acc), do: acc
+
+  defp do_postorder(%{data: data, left: left, right: right}, acc) do
+    acc = [data | acc]
+    acc = do_postorder(right, acc)
+    do_postorder(left, acc)
+  end
 end
