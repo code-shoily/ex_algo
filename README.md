@@ -57,6 +57,7 @@ Comprehensive API documentation is available via ex_doc. After running `mix docs
 | Name | Implementation | Test | Benchmark | Link | Note |
 | :--: | :------------: | :--: | :-------: | :--: | :--: |
 | Leftist Heap | [leftist_heap.ex](lib/ex_algo/heap/leftist_heap.ex) | [Yes](test/ex_algo/heap/leftist_heap_test.exs) | No | | |
+| Pairing Heap | [pairing_heap.ex](lib/ex_algo/heap/pairing_heap.ex) | [Yes](test/ex_algo/heap/pairing_heap_test.exs) | No | | |
 
 ### List
 
