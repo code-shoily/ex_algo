@@ -44,6 +44,7 @@ TODO - Add ex_doc pages with detailed explanations of each categories.
 
 | Name | Implementation | Test | Benchmark | Link | Note |
 | :--: | :------------: | :--: | :-------: | :--: | :--: |
+| Leftist Heap | [leftist_heap.ex](lib/ex_algo/heap/leftist_heap.ex) | [Yes](test/ex_algo/heap/leftist_heap_test.exs) | No | | |
 
 ### List
 
