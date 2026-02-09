@@ -3,7 +3,7 @@ defmodule ExAlgo.Heap.LeftistHeapTest do
   @moduletag :heap
 
   alias ExAlgo.Heap.LeftistHeap
-  alias ExAlgo.Heap.LeftistHeap.{Node, Empty}
+  alias ExAlgo.Heap.LeftistHeap.{Empty, Node}
 
   doctest ExAlgo.Heap.LeftistHeap
 

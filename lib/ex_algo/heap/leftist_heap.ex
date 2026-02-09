@@ -4,15 +4,21 @@ defmodule ExAlgo.Heap.LeftistHeap do
   """
   alias __MODULE__
 
-  defmodule Node do
-    defstruct [:dist, :value, :left, :right]
-  end
-
   defmodule Empty do
+    @moduledoc """
+    Represents an empty node.
+    """
     defstruct []
   end
 
-  def new(), do: %Empty{}
+  defmodule Node do
+    @moduledoc """
+    Represents a non-empty tree node.
+    """
+    defstruct [:dist, :value, :left, :right]
+  end
+
+  def new, do: %Empty{}
 
   def insert(%Empty{}, value), do: %Node{dist: 0, value: value, left: %Empty{}, right: %Empty{}}
   def insert(heap, value), do: merge(heap, insert(%Empty{}, value))
@@ -26,7 +32,7 @@ defmodule ExAlgo.Heap.LeftistHeap do
   def merge(h, %Empty{}), do: h
   def merge(%Empty{}, h), do: h
 
-  def merge(h1 = %Node{value: v1}, h2 = %Node{value: v2}) do
+  def merge(%Node{value: v1} = h1, %Node{value: v2} = h2) do
     if v1 <= v2 do
       do_merge(h1, h2)
     else
