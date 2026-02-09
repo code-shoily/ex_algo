@@ -8,7 +8,16 @@ defmodule ExAlgo.MixProject do
       elixir: "~> 1.19",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
-      test_coverage: [tool: ExCoveralls]
+      test_coverage: [tool: ExCoveralls],
+
+      # Docs
+      name: "ExAlgo",
+      source_url: "https://github.com/mafinar/ex_algo",
+      homepage_url: "https://github.com/mafinar/ex_algo",
+      docs: [
+        main: "ExAlgo",
+        extras: ["README.md"]
+      ]
     ]
   end
 
@@ -18,10 +27,12 @@ defmodule ExAlgo.MixProject do
         coveralls: :test,
         "coveralls.detail": :test,
         "coveralls.post": :test,
-        "coveralls.html": :test
+        "coveralls.html": :test,
+        "coveralls.json": :test
       ]
     ]
   end
+
 
   # Run "mix help compile.app" to learn about applications.
   def application do

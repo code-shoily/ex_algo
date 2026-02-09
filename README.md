@@ -27,11 +27,23 @@ The sole purpose of this is to use as a learning tool for algorithms in a functi
 
 ## Development
 
-Download this repo and get the dependencies with `mix deps.get`. Go to `iex -S mix` to try out the algorithms in the REPL. `mix test` runs all the tests.
+Download this repo and get the dependencies with `mix deps.get`. Go to `iex -S mix` to try out the algorithms in the REPL.
+
+### Testing
+
+- `mix test` - Run all tests
+- `mix coveralls` - Run tests with coverage report
+- `mix coveralls.html` - Generate HTML coverage report (opens in browser at `cover/excoveralls.html`)
+- `mix coveralls.detail` - Show detailed coverage per file
+
+### Documentation
+
+- `mix docs` - Generate documentation
+- Documentation will be available at `doc/index.html`
 
 ## Detailed Documentation
 
-TODO - Add ex_doc pages with detailed explanations of each categories.
+Comprehensive API documentation is available via ex_doc. After running `mix docs`, open `doc/index.html` in your browser to explore detailed documentation for all modules, including usage examples and type specifications.
 
 ## Catalogue
 
