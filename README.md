@@ -1,8 +1,11 @@
 # ExAlgo
 
-`ExAlgo` is a collection of data structures and algorithms implemented in Elixir. This is the authors attempt to see algorithms through Elixir's lens.
+`ExAlgo` is a curated collection of data structures and algorithms implemented in Elixir. This project represents an exploration of classic algorithmic patterns through the lens of functional programming and Elixir's unique primitives.
 
-The sole purpose of this is to use as a learning tool for algorithms in a functional language set-up. I am also thinking of using this to host some algorithms that could come in handy while solving Advent of Code. Almost all algorithms mentioned here have well tested and production ready libraries so I see little use that anyone would want to use this for anything serious.
+The primary goal is to serve as an educational resource for implementing algorithms in a functional context. It also serves as a repository for utility algorithms useful for challenges like Advent of Code.
+
+> [!NOTE]
+> While these implementations are verified with comprehensive tests, many of these algorithms have specialized, production-ready libraries available in the Hex ecosystem. This project is intended for learning and reference rather than as a replacement for established libraries.
 
 ## Table of Contents
 
@@ -12,7 +15,6 @@ The sole purpose of this is to use as a learning tool for algorithms in a functi
   - [Graph](#graph)
   - [Heap](#heap)
   - [List](#list)
-  - [Functional/Immutable](#functionalimmutable)
   - [Queue](#queue)
   - [Search](#search)
   - [Set](#set)
@@ -79,10 +81,6 @@ Comprehensive API documentation is available via ex_doc. After running `mix docs
 | BidirectionalList | [bidirectional_list.ex](lib/ex_algo/list/bidirectional_list.ex) | [Yes](test/ex_algo/list/bidirectional_list_test.exs) | No | | WIP |
 | Maximum Subarray Sum | [algorithms.ex](lib/ex_algo/list/algorithms.ex) | [Yes](test/ex_algo/list/algorithms_test.exs) | No | | Kadane's Algorithm |
 
-### Functional/Immutable
-
-| Name | Implementation | Test | Benchmark | Link | Note |
-| :--: | :------------: | :--: | :-------: | :--: | :--: |
 
 ### Queue
 
@@ -144,6 +142,7 @@ Comprehensive API documentation is available via ex_doc. After running `mix docs
 
 | Name | Implementation | Test | Benchmark | Link | Note |
 | :--: | :------------: | :--: | :-------: | :--: | :--: |
+| Prefix Trie | [prefix_trie.ex](lib/ex_algo/trie/prefix_trie.ex) | [Yes](test/ex_algo/trie/prefix_trie_test.exs) | No | | Functional map-based Trie |
 
 
 ### Dynamic Programming
@@ -160,3 +159,7 @@ Comprehensive API documentation is available via ex_doc. After running `mix docs
 | Catalan Numbers (Recursive) | [catalan.ex::recursive](lib/ex_algo/number/catalan.ex) | [Yes](test/ex_algo/number/catalan_test.exs) | No | | |
 | Catalan Numbers (Dynamic) | [catalan.ex::dp](lib/ex_algo/number/catalan.ex) | [Yes](test/ex_algo/number/catalan_test.exs) | No | | |
 | Divisors | [arithmetics.ex::divisors](lib/ex_algo/number/arithmetics.ex) | [Yes](test/ex_algo/number/arithmetics_test.exs) | No | | |
+
+## AI Usage Note
+
+Parts of this repository, including refactoring for academic alignment, documentation enhancements, and several algorithmic implementations (such as the Inductive Graph suite and Prefix Trie), were developed or refined in collaboration with an AI coding assistant (Antigravity). This partnership helped ensure consistent documentation standards, rigorous testing, and adherence to functional programming best practices.
