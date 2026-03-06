@@ -51,6 +51,15 @@ Comprehensive API documentation is available via ex_doc. After running `mix docs
 
 | Name | Implementation | Test | Benchmark | Link | Note |
 | :--: | :------------: | :--: | :-------: | :--: | :--: |
+| Inductive Graph Model | [model.ex](lib/ex_algo/graph/functional/model.ex) | [Yes](test/ex_algo/graph/functional/model_test.exs) | No | | Core Inductive Data Structure |
+| DFS | [traversal.ex](lib/ex_algo/graph/functional/traversal.ex) | [Yes](test/ex_algo/graph/functional/traversal_test.exs) | No | | Inductive Depth-First Search |
+| BFS | [traversal.ex](lib/ex_algo/graph/functional/traversal.ex) | [Yes](test/ex_algo/graph/functional/traversal_test.exs) | No | | Inductive Breadth-First Search |
+| Topological Sort | [algorithms.ex](lib/ex_algo/graph/functional/algorithms.ex) | [Yes](test/ex_algo/graph/functional/algorithms_test.exs) | No | | Inductive Kahn's Algorithm |
+| Dijkstra's Algorithm | [algorithms.ex](lib/ex_algo/graph/functional/algorithms.ex) | [Yes](test/ex_algo/graph/functional/algorithms_test.exs) | No | | Shortest Path |
+| Prim's MST | [algorithms.ex](lib/ex_algo/graph/functional/algorithms.ex) | [Yes](test/ex_algo/graph/functional/algorithms_test.exs) | No | | Minimum Spanning Tree |
+| Kosaraju's SCC | [algorithms.ex](lib/ex_algo/graph/functional/algorithms.ex) | [Yes](test/ex_algo/graph/functional/algorithms_test.exs) | No | | Strongly Connected Components |
+| Connected Components | [analysis.ex](lib/ex_algo/graph/functional/analysis.ex) | [Yes](test/ex_algo/graph/functional/analysis_test.exs) | No | | Undirected Components |
+| Tarjan's Connectivity | [analysis.ex](lib/ex_algo/graph/functional/analysis.ex) | [Yes](test/ex_algo/graph/functional/analysis_test.exs) | No | | Bridges & Articulation Points |
 
 ### Heap
 
