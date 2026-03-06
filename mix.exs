@@ -9,6 +9,7 @@ defmodule ExAlgo.MixProject do
       start_permanent: Mix.env() == :prod,
       deps: deps(),
       test_coverage: [tool: ExCoveralls],
+      aliases: aliases(),
 
       # Docs
       name: "ExAlgo",
@@ -24,6 +25,7 @@ defmodule ExAlgo.MixProject do
   def cli do
     [
       preferred_envs: [
+        ci: :test,
         coveralls: :test,
         "coveralls.detail": :test,
         "coveralls.post": :test,
@@ -32,7 +34,6 @@ defmodule ExAlgo.MixProject do
       ]
     ]
   end
-
 
   # Run "mix help compile.app" to learn about applications.
   def application do
@@ -46,9 +47,17 @@ defmodule ExAlgo.MixProject do
     [
       {:benchee, "~> 1.1", only: :dev},
       {:credo, "~> 1.6", only: [:dev, :test], runtime: false},
+      {:dialyxir, "~> 1.4", only: [:dev, :test], runtime: false},
       {:excoveralls, "~> 0.15", only: :test},
       {:ex_doc, "~> 0.29", only: :dev, runtime: false},
       {:stream_data, "~> 1.0", only: [:dev, :test]}
+    ]
+  end
+
+  defp aliases do
+    [
+      setup: ["deps.get", "compile"],
+      ci: ["format --check-formatted", "credo --strict", "dialyzer", "test"]
     ]
   end
 end
