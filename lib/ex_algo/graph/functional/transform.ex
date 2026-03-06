@@ -1,6 +1,10 @@
 defmodule ExAlgo.Graph.Functional.Transform do
   @moduledoc """
   Higher-order transformations and operational functions for the functional inductive graph.
+
+  This module provides functions that operate on the graph as a whole using the
+  inductive primitives provided by `ExAlgo.Graph.Functional.Model`. These include
+  mapping over nodes or labels, filtering nodes, and changing graph directionality.
   """
 
   alias ExAlgo.Graph.Functional.Model

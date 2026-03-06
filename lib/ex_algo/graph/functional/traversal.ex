@@ -1,6 +1,14 @@
 defmodule ExAlgo.Graph.Functional.Traversal do
   @moduledoc """
   Traversal algorithms for functional inductive graphs.
+
+  Unlike traditional graph traversals that use a separate "visited" set, these
+  inductive traversals rely on the structural `match/2` operation. When a node is
+  extracted, it returns both the node's context and a *shrunken* graph that no longer
+  contains that node or its incident edges.
+
+  Iterating with this shrunken graph naturally prevents revisiting nodes and
+  terminates when the graph is empty.
   """
   alias ExAlgo.Graph.Functional.Model
 

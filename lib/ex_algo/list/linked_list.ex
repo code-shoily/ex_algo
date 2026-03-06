@@ -1,6 +1,15 @@
 defmodule ExAlgo.List.LinkedList do
   @moduledoc """
-  Implementation of a singly linked list.
+  A simple implementation of a singly linked list.
+
+  > [!IMPORTANT]
+  > This module is intended for educational purposes only. Elixir's native lists
+  > are already implemented as singly linked lists. In production, always prefer
+  > native lists (`[]`) over this wrapper.
+
+  This module provides a wrapper around Elixir's native list, exposing a
+  classic linked list interface. It includes support for protocols like
+  `Enumerable`, `Collectable`, and `Inspect` (implemented in the `impls` sub-namespace).
   """
   @type neg_index_error :: {:error, :negative_index}
   @type empty_error :: {:error, :empty_list}

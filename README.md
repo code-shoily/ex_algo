@@ -60,6 +60,8 @@ Comprehensive API documentation is available via ex_doc. After running `mix docs
 | Kosaraju's SCC | [algorithms.ex](lib/ex_algo/graph/functional/algorithms.ex) | [Yes](test/ex_algo/graph/functional/algorithms_test.exs) | No | | Strongly Connected Components |
 | Connected Components | [analysis.ex](lib/ex_algo/graph/functional/analysis.ex) | [Yes](test/ex_algo/graph/functional/analysis_test.exs) | No | | Undirected Components |
 | Tarjan's Connectivity | [analysis.ex](lib/ex_algo/graph/functional/analysis.ex) | [Yes](test/ex_algo/graph/functional/analysis_test.exs) | No | | Bridges & Articulation Points |
+| Functional Transformations | [transform.ex](lib/ex_algo/graph/functional/transform.ex) | [Yes](test/ex_algo/graph/functional/transform_test.exs) | No | | Higher-order ops (map/filter) |
+| Graph Visualizer | [visualizer.ex](lib/ex_algo/graph/functional/visualizer.ex) | [Yes](test/ex_algo/graph/functional/visualizer_test.exs) | No | | Mermaid & Inspect support |
 
 ### Heap
 
@@ -104,6 +106,7 @@ Comprehensive API documentation is available via ex_doc. After running `mix docs
 
 | Name | Implementation | Test | Benchmark | Link | Note |
 | :--: | :------------: | :--: | :-------: | :--: | :--: |
+| Sort Interface | [sort.ex](lib/ex_algo/sort/sort.ex) | [No](test/ex_algo/sort/sort_test.exs) | No | | Universal sorting facade |
 | Bubble Sort | [exchange.ex](lib/ex_algo/sort/exchange.ex) | [Yes](test/ex_algo/sort/exchange_test.exs) | No | | |
 | Insertion Sort | [insertion.ex](lib/ex_algo/sort/insertion.ex) | [Yes](test/ex_algo/sort/insertion_test.exs) | No | | |
 | Merge Sort | [merge.ex](lib/ex_algo/sort/merge.ex) | [Yes](test/ex_algo/sort/merge_test.exs) | No | | |

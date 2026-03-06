@@ -1,31 +1,44 @@
 defmodule ExAlgo.Heap.PairingHeap do
   @moduledoc """
-  Implementation of a [pairing heap](https://en.wikipedia.org/wiki/Pairing_heap).
+  An implementation of a Pairing Heap.
+
+  A pairing heap is a type of self-adjusting heap with excellent practical performance
+  and a simple implementation. It is a multi-way tree that satisfies the heap property:
+  the value of any node is less than or equal to the values of its children.
+
+  Complexity:
+  - `find_min`: O(1)
+  - `insert`: O(1)
+  - `merge`: O(1)
+  - `delete_min`: O(log n) amortized
+
+  The core merging strategy uses a two-pass approach to maintain balance without
+  explicit height or rank tracking.
   """
   alias __MODULE__
 
   defmodule Node do
-    @moduledoc """
-    Represents a node in a multi-way tree consisting of a value and a list of sub-heaps.
-    """
+    @moduledoc "Represents a non-empty pairing heap node."
     defstruct [:value, children: []]
   end
 
   defmodule Empty do
-    @moduledoc """
-    Represents an empty node
-    """
+    @moduledoc "Represents an empty pairing heap node."
     defstruct []
   end
 
+  @doc "Creates a new empty pairing heap."
   def new, do: %Empty{}
 
+  @doc "Inserts a value into the pairing heap."
   def insert(%Empty{}, value), do: node(value, [])
   def insert(heap, value), do: merge(heap, node(value, []))
 
+  @doc "Returns the minimum element of the heap."
   def find_min(%Empty{}), do: {:error, :empty}
   def find_min(%Node{value: v}), do: {:ok, v}
 
+  @doc "Removes the minimum element and combines the child sub-heaps."
   def delete_min(%Empty{}), do: {:error, :empty}
   def delete_min(%Node{children: c}), do: {:ok, combine(c)}
 

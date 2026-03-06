@@ -1,31 +1,42 @@
 defmodule ExAlgo.Heap.LeftistHeap do
   @moduledoc """
-  Implementation of a leftist heap.
+  An implementation of a Leftist Heap (Leftist Tree).
+
+  A leftist heap is a priority queue implemented as a binary tree with a specific invariant:
+  for every node, the distance to the nearest empty node in the right subtree is less than
+  or equal to the distance in the left subtree.
+
+  This property ensures:
+  1. The right spine of the tree is the shortest path to an empty node.
+  2. The right spine length is at most logarithmic relative to the number of nodes (Log N).
+  3. Merging two leftist heaps, which is the core operation, also takes O(Log N) time.
+
+  All operations like `insert`, `find_min`, and `delete_min` are implemented in terms of `merge`.
   """
   alias __MODULE__
 
   defmodule Empty do
-    @moduledoc """
-    Represents an empty node.
-    """
+    @moduledoc "Represents an empty leftist heap node."
     defstruct []
   end
 
   defmodule Node do
-    @moduledoc """
-    Represents a non-empty tree node.
-    """
+    @moduledoc "Represents a non-empty leftist heap node."
     defstruct [:dist, :value, :left, :right]
   end
 
+  @doc "Creates a new empty leftist heap."
   def new, do: %Empty{}
 
+  @doc "Inserts a value into the leftist heap."
   def insert(%Empty{}, value), do: %Node{dist: 0, value: value, left: %Empty{}, right: %Empty{}}
   def insert(heap, value), do: merge(heap, insert(%Empty{}, value))
 
+  @doc "Returns the minimum element (the root) of the heap."
   def find_min(%Empty{}), do: {:error, :empty}
   def find_min(%Node{value: v}), do: {:ok, v}
 
+  @doc "Removes the minimum element and merges the remaining sub-heaps."
   def delete_min(%Empty{}), do: {:error, :empty}
   def delete_min(%Node{left: l, right: r}), do: {:ok, merge(l, r)}
 

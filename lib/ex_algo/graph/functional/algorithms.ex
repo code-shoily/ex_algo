@@ -1,11 +1,18 @@
 defmodule ExAlgo.Graph.Functional.Algorithms do
   @moduledoc """
-  Classic graph algorithms implemented purely inductively.
+  Classic graph algorithms implemented using purely functional inductive principles.
 
-  Each algorithm uses `match/2` as its fundamental step: extracting a node
-  from the graph returns both the node's context and the *shrunken* graph
-  (all links to/from that node removed). This eliminates the need for
-  external visited-sets or mutation — correctness follows from the structure.
+  Each algorithm in this module leverages `match/2` as its core operation.
+  By extracting a node and working with the resulting *shrunken* graph,
+  these implementations avoid mutable state, explicit "visited" sets, or
+  complex bookkeeping. Correctness and termination follow naturally from the
+  inductive structure of the graph.
+
+  Implemented algorithms include:
+  - Topological Sort (Kahn's approach)
+  - Shortest Path (Dijkstra's)
+  - Minimum Spanning Tree (Prim's)
+  - Strongly Connected Components (Kosaraju's)
   """
   alias ExAlgo.Graph.Functional.Model
 

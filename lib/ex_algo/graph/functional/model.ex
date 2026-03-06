@@ -1,16 +1,24 @@
 defmodule ExAlgo.Graph.Functional.Model do
   @moduledoc """
-  An Inductive Graph implementation.
+  An Inductive Graph implementation based on Martin Erwig's functional approach.
 
-  This is a functional graph data structure based on Martin Erwig's inductive graphs.
-  The graph is represented as a collection of node contexts, where each context contains
-  the node's label and its adjacent edges (both incoming and outgoing).
+  In an inductive graph, the structure is defined recursively. A graph is either empty
+  or it consists of a node context (a node and its incident edges) "patched" into
+  an existing graph.
 
-  ## Core Operations
+  This module provides the core data structures and fundamental operations for
+  manipulating these graphs.
 
-  The fundamental operations are `match/2` and `embed/2`, which allow you to
-  remove a node from the graph and insert it back. These operations form the basis
-  for most graph algorithms.
+  ## Primary Operations
+
+  - `match/2`: Decomposes a graph by extracting a specific node and its incident
+    edges. This is the primary way to traverse or consume a graph inductively.
+  - `patch/2` (currently `embed/2`): The inverse of `match`; it inserts a node context
+    back into a graph, restoring its incident edges.
+
+  Most high-level algorithms in `ExAlgo.Graph.Functional.Algorithms` utilize `match/2`
+  to shrink the graph at each step, ensuring termination and handling cycles
+  naturally without external visited sets.
   """
 
   alias __MODULE__.Context
@@ -276,8 +284,13 @@ defmodule ExAlgo.Graph.Functional.Model do
     new_graph
   end
 
-  @doc "Matches a node in the graph, returning its context and the remaining graph."
-  @spec match(t(), node_id()) :: {:ok, Context.t(), t()} | {:error, :not_found}
+  @doc """
+  Matches a node in the graph, returning its context and the remaining graph.
+
+  This operation extracts the node and all its incident edges (both incoming and
+  outgoing). If the node is found, it returns `{:ok, context, remaining_graph}`.
+  Otherwise, it returns `{:error, :not_found}`.
+  """
   def match(%__MODULE__{nodes: nodes} = graph, id) do
     case Map.pop(nodes, id) do
       {nil, _} ->
@@ -298,8 +311,13 @@ defmodule ExAlgo.Graph.Functional.Model do
     end
   end
 
-  @doc "Embeds a node context back into the graph."
-  @spec embed(Context.t(), t()) :: t()
+  @doc """
+  Embeds (patches) a node context back into the graph.
+
+  This operation restores the node and all the incident edges described in the
+  provided context. Note that it assumes the neighbors referenced in the context
+  already exist in the target graph.
+  """
   def embed(%Context{id: id} = ctx, %__MODULE__{nodes: nodes}) do
     new_nodes = restore_all_links_from(nodes, ctx)
     %__MODULE__{nodes: Map.put(new_nodes, id, ctx)}

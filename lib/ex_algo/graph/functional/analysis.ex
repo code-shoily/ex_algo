@@ -1,7 +1,12 @@
 defmodule ExAlgo.Graph.Functional.Analysis do
   @moduledoc """
   High-level graph analysis for inductive graphs.
-  Focuses on connectivity, structural vulnerabilities, and components.
+
+  This module focuses on analyzing the structural properties of graphs, such as
+  connectivity, components, and vulnerabilities (bridges and articulation points).
+
+  The algorithms provided here primarily target undirected graphs or treat oriented
+  edges as undirected where appropriate.
   """
   alias ExAlgo.Graph.Functional.Model
 
