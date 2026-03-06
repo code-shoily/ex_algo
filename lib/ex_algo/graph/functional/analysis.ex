@@ -73,40 +73,7 @@ defmodule ExAlgo.Graph.Functional.Analysis do
 
     {final_state, children_count} =
       Enum.reduce(neighbors, {state, 0}, fn to, {acc_state, children} ->
-        cond do
-          to == parent ->
-            {acc_state, children}
-
-          MapSet.member?(acc_state.visited, to) ->
-            new_low = min(acc_state.low[v], acc_state.tin[to])
-            {%{acc_state | low: Map.put(acc_state.low, v, new_low)}, children}
-
-          true ->
-            {post_dfs_state, _} = tarjan_dfs(graph, to, v, acc_state)
-
-            new_v_low = min(post_dfs_state.low[v], post_dfs_state.low[to])
-
-            new_bridges =
-              if post_dfs_state.low[to] > post_dfs_state.tin[v] do
-                [{min(v, to), max(v, to)} | post_dfs_state.bridges]
-              else
-                post_dfs_state.bridges
-              end
-
-            new_points =
-              if parent != nil and post_dfs_state.low[to] >= post_dfs_state.tin[v] do
-                MapSet.put(post_dfs_state.points, v)
-              else
-                post_dfs_state.points
-              end
-
-            {%{
-               post_dfs_state
-               | low: Map.put(post_dfs_state.low, v, new_v_low),
-                 bridges: new_bridges,
-                 points: new_points
-             }, children + 1}
-        end
+        process_neighbor(graph, v, to, parent, acc_state, children)
       end)
 
     final_state =
@@ -117,6 +84,43 @@ defmodule ExAlgo.Graph.Functional.Analysis do
       end
 
     {final_state, children_count}
+  end
+
+  defp process_neighbor(graph, v, to, parent, acc_state, children) do
+    cond do
+      to == parent ->
+        {acc_state, children}
+
+      MapSet.member?(acc_state.visited, to) ->
+        new_low = min(acc_state.low[v], acc_state.tin[to])
+        {%{acc_state | low: Map.put(acc_state.low, v, new_low)}, children}
+
+      true ->
+        {post_dfs_state, _} = tarjan_dfs(graph, to, v, acc_state)
+
+        new_v_low = min(post_dfs_state.low[v], post_dfs_state.low[to])
+
+        new_bridges =
+          if post_dfs_state.low[to] > post_dfs_state.tin[v] do
+            [{min(v, to), max(v, to)} | post_dfs_state.bridges]
+          else
+            post_dfs_state.bridges
+          end
+
+        new_points =
+          if parent != nil and post_dfs_state.low[to] >= post_dfs_state.tin[v] do
+            MapSet.put(post_dfs_state.points, v)
+          else
+            post_dfs_state.points
+          end
+
+        {%{
+           post_dfs_state
+           | low: Map.put(post_dfs_state.low, v, new_v_low),
+             bridges: new_bridges,
+             points: new_points
+         }, children + 1}
+    end
   end
 
   defp extract_component(graph, [], acc), do: {acc, graph}

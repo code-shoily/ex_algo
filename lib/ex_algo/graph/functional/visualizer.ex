@@ -11,19 +11,17 @@ defmodule ExAlgo.Graph.Functional.Visualizer do
     def to_mermaid(graph) do
       nodes_str =
         Model.nodes(graph)
-        |> Enum.map(fn ctx ->
+        |> Enum.map_join("\n", fn ctx ->
           label = ctx.label || ctx.id
           "    #{inspect(ctx.id)}[#{inspect(label)}]"
         end)
-        |> Enum.join("\n")
 
       edges_str =
         Model.edges(graph)
-        |> Enum.map(fn {u, v, w} ->
+        |> Enum.map_join("\n", fn {u, v, w} ->
           label = if w, do: "|#{inspect(w)}|", else: ""
           "    #{inspect(u)} -->#{label} #{inspect(v)}"
         end)
-        |> Enum.join("\n")
 
       "graph TD\n" <> nodes_str <> "\n" <> edges_str
     end

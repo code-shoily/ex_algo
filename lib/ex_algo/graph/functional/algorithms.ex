@@ -32,14 +32,18 @@ defmodule ExAlgo.Graph.Functional.Algorithms do
     if Model.empty?(graph) do
       {:ok, Enum.reverse(acc)}
     else
-      case Enum.find(Model.nodes(graph), fn ctx -> map_size(ctx.in_edges) == 0 end) do
-        nil ->
-          {:error, :cycle_detected}
+      find_and_match_next(graph, acc)
+    end
+  end
 
-        ctx ->
-          {:ok, _ctx, remaining_graph} = Model.match(graph, ctx.id)
-          do_topsort(remaining_graph, [ctx.id | acc])
-      end
+  defp find_and_match_next(graph, acc) do
+    case Enum.find(Model.nodes(graph), fn ctx -> map_size(ctx.in_edges) == 0 end) do
+      nil ->
+        {:error, :cycle_detected}
+
+      ctx ->
+        {:ok, _ctx, remaining_graph} = Model.match(graph, ctx.id)
+        do_topsort(remaining_graph, [ctx.id | acc])
     end
   end
 
@@ -72,18 +76,23 @@ defmodule ExAlgo.Graph.Functional.Algorithms do
         do_dijkstra(graph, pq, target_id)
 
       {:ok, ctx, remaining_graph} ->
-        if current == target_id do
-          {:ok, Enum.reverse([current | path]), dist}
-        else
-          new_pq =
-            Enum.reduce(ctx.out_edges, pq, fn {neighbor_id, weight}, acc_pq ->
-              w = weight || 1
-              insert_pq(acc_pq, {dist + w, neighbor_id, [current | path]})
-            end)
-
-          do_dijkstra(remaining_graph, new_pq, target_id)
-        end
+        process_dijkstra_node(ctx, remaining_graph, dist, path, pq, target_id)
     end
+  end
+
+  defp process_dijkstra_node(ctx, _remaining_graph, dist, path, _pq, target_id)
+       when ctx.id == target_id do
+    {:ok, Enum.reverse([ctx.id | path]), dist}
+  end
+
+  defp process_dijkstra_node(ctx, remaining_graph, dist, path, pq, target_id) do
+    new_pq =
+      Enum.reduce(ctx.out_edges, pq, fn {neighbor_id, weight}, acc_pq ->
+        w = weight || 1
+        insert_pq(acc_pq, {dist + w, neighbor_id, [ctx.id | path]})
+      end)
+
+    do_dijkstra(remaining_graph, new_pq, target_id)
   end
 
   @doc """
